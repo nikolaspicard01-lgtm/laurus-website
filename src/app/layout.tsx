@@ -34,7 +34,6 @@ export const metadata: Metadata = {
     description:
       "Empower your child through fun and learning at Laurus Summer Camp. 17+ locations, ages 3-15.",
     type: "website",
-    locale: "en_CA",
     siteName: "Laurus Summer Camp",
   },
 };
@@ -44,12 +43,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html
-      lang="en"
-      className={`${nunito.variable} ${dmSans.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
-  );
+  return children;
 }
