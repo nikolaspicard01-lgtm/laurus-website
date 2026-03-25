@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CountdownBar from "@/components/CountdownBar";
@@ -48,34 +49,42 @@ const programs = [
 
 const summerLocations = {
   "West Island": [
-    "DDO",
-    "Beaconsfield",
-    "Baie d'Urfé",
-    "Île-Bizard",
-    "Ste-Geneviève",
+    { name: "DDO", slug: "dollard-des-ormeaux" },
+    { name: "Beaconsfield", slug: "beaconsfield" },
+    { name: "Baie d'Urfé", slug: "baie-durfe" },
+    { name: "Île-Bizard", slug: "ile-bizard" },
+    { name: "Ste-Geneviève", slug: "sainte-genevieve" },
   ],
   Montreal: [
-    "Downtown",
-    "NDG",
-    "TMR",
-    "Verdun",
-    "Ville Saint-Laurent",
-    "Saint-Léonard",
-    "RDP",
+    { name: "Downtown", slug: "montreal-downtown" },
+    { name: "NDG", slug: "notre-dame-de-grace" },
+    { name: "TMR", slug: "town-of-mount-royal" },
+    { name: "Verdun", slug: "verdun" },
+    { name: "Ville Saint-Laurent", slug: "ville-saint-laurent" },
+    { name: "Saint-Léonard", slug: "saint-leonard" },
+    { name: "RDP", slug: "riviere-des-prairies" },
   ],
-  "Off Island": ["Laval", "Rosemère", "Brossard", "Vaudreuil"],
-  Ontario: ["Toronto", "Ottawa"],
+  "Off Island": [
+    { name: "Laval", slug: "laval" },
+    { name: "Rosemère", slug: "rosemere" },
+    { name: "Brossard", slug: "brossard" },
+    { name: "Vaudreuil", slug: "vaudreuil" },
+  ],
+  Ontario: [
+    { name: "Toronto", slug: "toronto" },
+    { name: "Ottawa", slug: "ottawa" },
+  ],
 };
 
 const springLocations = [
-  "DDO",
-  "Laval",
-  "NDG",
-  "Verdun",
-  "TMR",
-  "Westmount",
-  "Rosemère",
-  "Toronto",
+  { name: "DDO", slug: "dollard-des-ormeaux" },
+  { name: "Laval", slug: "laval" },
+  { name: "NDG", slug: "notre-dame-de-grace" },
+  { name: "Verdun", slug: "verdun" },
+  { name: "TMR", slug: "town-of-mount-royal" },
+  { name: "Westmount", slug: "westmount" },
+  { name: "Rosemère", slug: "rosemere" },
+  { name: "Toronto", slug: "toronto" },
 ];
 
 const stats = [
@@ -380,11 +389,13 @@ export default function HomePage() {
                   </h3>
                   <ul className="space-y-2">
                     {locations.map((loc) => (
-                      <li
-                        key={loc}
-                        className="text-[14px] text-text-body hover:text-blue transition-colors cursor-pointer"
-                      >
-                        {loc}
+                      <li key={loc.slug}>
+                        <Link
+                          href={`/summer-camp/locations/${loc.slug}`}
+                          className="text-[14px] text-text-body hover:text-blue transition-colors"
+                        >
+                          {loc.name}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -404,15 +415,19 @@ export default function HomePage() {
               </motion.h3>
               <div className="flex flex-wrap justify-center gap-2">
                 {springLocations.map((loc) => (
-                  <motion.span
-                    key={loc}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    className="text-[13px] font-bold text-coral bg-coral/6 px-4 py-2 rounded-full border border-coral/15 hover:bg-coral/10 transition-colors cursor-pointer"
+                  <Link
+                    key={loc.slug}
+                    href={`/spring-break/locations/${loc.slug}`}
                   >
-                    {loc}
-                  </motion.span>
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      className="text-[13px] font-bold text-coral bg-coral/6 px-4 py-2 rounded-full border border-coral/15 hover:bg-coral/10 transition-colors cursor-pointer inline-block"
+                    >
+                      {loc.name}
+                    </motion.span>
+                  </Link>
                 ))}
               </div>
             </div>

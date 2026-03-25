@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
@@ -46,10 +47,32 @@ const schedule = [
 ];
 
 const locations = {
-  "West Island": ["DDO", "Beaconsfield", "Baie d'Urfé", "Île-Bizard", "Ste-Geneviève"],
-  "Montreal": ["Downtown", "NDG", "TMR", "Verdun", "Ville Saint-Laurent", "Saint-Léonard", "RDP"],
-  "Off Island": ["Laval", "Rosemère", "Brossard", "Vaudreuil"],
-  "Ontario": ["Toronto", "Ottawa"],
+  "West Island": [
+    { name: "DDO", slug: "dollard-des-ormeaux" },
+    { name: "Beaconsfield", slug: "beaconsfield" },
+    { name: "Baie d'Urfé", slug: "baie-durfe" },
+    { name: "Île-Bizard", slug: "ile-bizard" },
+    { name: "Ste-Geneviève", slug: "sainte-genevieve" },
+  ],
+  "Montreal": [
+    { name: "Downtown", slug: "montreal-downtown" },
+    { name: "NDG", slug: "notre-dame-de-grace" },
+    { name: "TMR", slug: "town-of-mount-royal" },
+    { name: "Verdun", slug: "verdun" },
+    { name: "Ville Saint-Laurent", slug: "ville-saint-laurent" },
+    { name: "Saint-Léonard", slug: "saint-leonard" },
+    { name: "RDP", slug: "riviere-des-prairies" },
+  ],
+  "Off Island": [
+    { name: "Laval", slug: "laval" },
+    { name: "Rosemère", slug: "rosemere" },
+    { name: "Brossard", slug: "brossard" },
+    { name: "Vaudreuil", slug: "vaudreuil" },
+  ],
+  "Ontario": [
+    { name: "Toronto", slug: "toronto" },
+    { name: "Ottawa", slug: "ottawa" },
+  ],
 };
 
 const faqItems = [
@@ -222,7 +245,11 @@ export default function SummerCampPage() {
                 </h3>
                 <ul className="space-y-2">
                   {locs.map((loc) => (
-                    <li key={loc} className="text-[14px] text-text-body hover:text-blue transition-colors cursor-pointer">{loc}</li>
+                    <li key={loc.slug}>
+                      <Link href={`/summer-camp/locations/${loc.slug}`} className="text-[14px] text-text-body hover:text-blue transition-colors">
+                        {loc.name}
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               </motion.div>

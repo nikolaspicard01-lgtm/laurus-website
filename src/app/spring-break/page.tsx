@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
@@ -9,14 +10,14 @@ import Button from "@/components/Button";
 import FAQ from "@/components/FAQ";
 
 const locations = [
-  { name: "DDO", price: "$350/wk", region: "Quebec" },
-  { name: "Laval", price: "$350/wk", region: "Quebec" },
-  { name: "NDG", price: "$375/wk", region: "Quebec" },
-  { name: "Verdun", price: "$350/wk", region: "Quebec" },
-  { name: "TMR", price: "$375/wk", region: "Quebec" },
-  { name: "Westmount", price: "$375/wk", region: "Quebec" },
-  { name: "Rosemère", price: "$350/wk", region: "Quebec" },
-  { name: "Toronto (Richmond Hill)", price: "$575/wk", region: "Ontario" },
+  { name: "DDO", slug: "dollard-des-ormeaux", price: "$350/wk", region: "Quebec" },
+  { name: "Laval", slug: "laval", price: "$350/wk", region: "Quebec" },
+  { name: "NDG", slug: "notre-dame-de-grace", price: "$375/wk", region: "Quebec" },
+  { name: "Verdun", slug: "verdun", price: "$350/wk", region: "Quebec" },
+  { name: "TMR", slug: "town-of-mount-royal", price: "$375/wk", region: "Quebec" },
+  { name: "Westmount", slug: "westmount", price: "$375/wk", region: "Quebec" },
+  { name: "Rosemère", slug: "rosemere", price: "$350/wk", region: "Quebec" },
+  { name: "Toronto (Richmond Hill)", slug: "toronto", price: "$575/wk", region: "Ontario" },
 ];
 
 const faqItems = [
@@ -51,11 +52,13 @@ export default function SpringBreakPage() {
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {locations.map((loc, i) => (
-              <Card key={loc.name} accent={loc.region === "Ontario" ? "sunshine" : "coral"} delay={i * 0.08}>
-                <h3 className="text-[16px] font-extrabold text-navy mb-1">{loc.name}</h3>
-                <p className="text-[12px] font-bold text-text-muted mb-3">{loc.region}</p>
-                <p className="text-[20px] font-black text-coral">{loc.price}</p>
-              </Card>
+              <Link key={loc.slug} href={`/spring-break/locations/${loc.slug}`}>
+                <Card accent={loc.region === "Ontario" ? "sunshine" : "coral"} delay={i * 0.08}>
+                  <h3 className="text-[16px] font-extrabold text-navy mb-1">{loc.name}</h3>
+                  <p className="text-[12px] font-bold text-text-muted mb-3">{loc.region}</p>
+                  <p className="text-[20px] font-black text-coral">{loc.price}</p>
+                </Card>
+              </Link>
             ))}
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
