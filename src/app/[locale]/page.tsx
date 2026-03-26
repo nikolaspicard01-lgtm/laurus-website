@@ -11,6 +11,7 @@ import Button from "@/components/Button";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
 import Icon, { type IconName } from "@/components/Icon";
+import { AnimatedCounter } from "@/components/Animate";
 
 const programs = [
   {
@@ -157,9 +158,9 @@ export default function HomePage() {
         <section className="relative gradient-hero overflow-hidden">
           {/* Decorative shapes */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute w-[400px] h-[400px] rounded-full bg-blue/5 -top-20 -left-20 blur-3xl" />
-            <div className="absolute w-[300px] h-[300px] rounded-full bg-sunshine/8 bottom-10 right-10 blur-3xl" />
-            <div className="absolute w-[200px] h-[200px] rounded-full bg-coral/5 top-1/2 right-1/4 blur-3xl" />
+            <div className="absolute w-[400px] h-[400px] rounded-full bg-blue/5 -top-20 -left-20 blur-3xl animate-[float-slow_8s_ease-in-out_infinite]" />
+            <div className="absolute w-[300px] h-[300px] rounded-full bg-sunshine/8 bottom-10 right-10 blur-3xl animate-[float-slow-alt_10s_ease-in-out_infinite]" />
+            <div className="absolute w-[200px] h-[200px] rounded-full bg-coral/5 top-1/2 right-1/4 blur-3xl animate-[float-slow_12s_ease-in-out_infinite_reverse]" />
           </div>
 
           <div className="relative max-w-[1320px] mx-auto px-6 py-20 lg:py-28">
@@ -285,7 +286,7 @@ export default function HomePage() {
                   className="text-center"
                 >
                   <div className="text-[clamp(2rem,4vw,3rem)] font-black text-navy font-[var(--font-nunito)]">
-                    {stat.value}
+                    <AnimatedCounter value={stat.value} />
                   </div>
                   <div className="text-[14px] font-semibold text-text-muted">
                     {stat.label}

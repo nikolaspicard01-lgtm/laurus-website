@@ -42,7 +42,7 @@ export default function Button({
   pill = false,
   onClick,
 }: ButtonProps) {
-  const baseStyles = `inline-flex items-center justify-center gap-2 font-bold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 ${
+  const baseStyles = `inline-flex items-center justify-center gap-2 font-bold transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 btn-shine ${
     pill ? "!rounded-full" : ""
   } ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
 

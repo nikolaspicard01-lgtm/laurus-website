@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isValidLocale, locales, type Locale } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/LocaleContext";
 import { getPageMetadata } from "@/lib/metadata";
+import { LocalBusinessSchema } from "@/components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -25,6 +26,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="h-full antialiased">
+      <head>
+        <LocalBusinessSchema />
+      </head>
       <body className="min-h-full flex flex-col">
         <LocaleProvider locale={locale as Locale}>
           {children}

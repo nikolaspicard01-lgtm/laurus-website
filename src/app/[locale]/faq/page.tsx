@@ -7,6 +7,7 @@ import PageHero from "@/components/PageHero";
 import FAQ from "@/components/FAQ";
 import Icon from "@/components/Icon";
 import { useLocale } from "@/lib/LocaleContext";
+import { FAQSchema } from "@/components/JsonLd";
 
 export default function FAQPage() {
   const { locale, dict } = useLocale();
@@ -16,8 +17,11 @@ export default function FAQPage() {
   const [activeCategory, setActiveCategory] = useState(categories[0]?.id ?? "summer");
   const active = categories.find((c) => c.id === activeCategory) ?? categories[0];
 
+  const allFaqItems = categories.flatMap((cat) => cat.items);
+
   return (
     <PageWrapper>
+      <FAQSchema items={allFaqItems} />
       <PageHero
         tag={f.heroTag}
         tagColor="violet"
