@@ -69,6 +69,68 @@ export default function SpringBreakPage() {
               </div>
             ))}
           </div>
+
+          {/* Ontario Dates Callout */}
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="mt-10 bg-sunshine/10 border-2 border-sunshine rounded-[var(--radius-lg)] p-6 text-center">
+            <p className="text-[18px] font-black text-navy">Ontario Spring Break: March 16–20, 2026</p>
+            <p className="text-[14px] text-text-body mt-1">(different week from Quebec: March 2–6)</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Parents Love Spring Break */}
+      <section className="py-20 lg:py-28 bg-cream">
+        <div className="max-w-[1320px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="blue">Parent Approved</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Why Parents Love Spring Break
+            </motion.h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card accent="coral" icon="target" delay={0}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Keeps Kids Engaged</h3>
+              <p className="text-[14px] text-text-body">Active, structured programming means no screen-time overload during the break.</p>
+            </Card>
+            <Card accent="blue" icon="shield" delay={0.1}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Peace of Mind</h3>
+              <p className="text-[14px] text-text-body">Background-checked staff, CPR/First Aid certified, full-day coverage 7:30 AM – 5:30 PM.</p>
+            </Card>
+            <Card accent="sunshine" icon="users" delay={0.2}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">New Friendships</h3>
+              <p className="text-[14px] text-text-body">Kids make lasting connections through team activities, creative projects, and shared adventures.</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Flexible Registration Options */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[1000px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="mint">Registration</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Flexible Registration Options
+            </motion.h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <Card accent="coral" icon="calendar" delay={0}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-1">Full Week</h3>
+              <p className="text-[20px] font-black text-coral mb-2">$350–$575</p>
+              <p className="text-[14px] text-text-body">depending on location</p>
+            </Card>
+            <Card accent="blue" icon="clock" delay={0.1}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-1">Single Day</h3>
+              <p className="text-[20px] font-black text-blue mb-2">$80/day</p>
+              <p className="text-[14px] text-text-body">for families needing partial coverage</p>
+            </Card>
+            <Card accent="sunshine" icon="star" delay={0.2}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-1">Extended Hours</h3>
+              <p className="text-[20px] font-black text-sunshine mb-2">+$8/hour</p>
+              <p className="text-[14px] text-text-body">for early drop-off or late pick-up</p>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -89,8 +151,34 @@ export default function SpringBreakPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Testimonials */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[1320px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="violet">Testimonials</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              What Parents Are Saying
+            </motion.h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: "Marie Dupont", detail: "Parent of 6 & 9 year old", quote: "Spring Break camp was a lifesaver! The kids had an amazing week and I could actually get work done." },
+              { name: "Tom Richards", detail: "Parent of 8 year old", quote: "My daughter tried Robotics for the first time during March Break and now she\u2019s obsessed. Thank you Laurus!" },
+              { name: "Nadia Boukhari", detail: "Parent of 5 year old", quote: "The staff were so warm and welcoming. My shy son came home beaming every day." },
+            ].map((t, i) => (
+              <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-gray-50 rounded-[var(--radius-lg)] p-6 border border-[var(--border)]">
+                <p className="text-[14px] text-text-body italic mb-4">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-[14px] font-extrabold text-navy">{t.name}</p>
+                <p className="text-[12px] text-text-muted">{t.detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 lg:py-28 bg-cream">
         <div className="max-w-[1320px] mx-auto px-6">
           <div className="text-center mb-14">
             <SectionTag color="violet">FAQ</SectionTag>

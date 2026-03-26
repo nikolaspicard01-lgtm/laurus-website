@@ -73,6 +73,29 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Our Story */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[800px] mx-auto px-6">
+          <div className="text-center mb-10">
+            <SectionTag color="sunshine">Our Story</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              How Laurus Began
+            </motion.h2>
+          </div>
+          <div className="space-y-5">
+            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[16px] text-text-body leading-relaxed">
+              Laurus was founded in 2015 with a simple but ambitious idea: every child in Montreal deserves access to enriching, bilingual summer programming that feels less like school and more like the best day ever. What started as a single summer camp location with a small team of passionate counsellors has grown into one of the most trusted names in youth programming across the Greater Montreal area.
+            </motion.p>
+            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-[16px] text-text-body leading-relaxed">
+              Over the past decade, Laurus has expanded from that single location to 17+ campuses spanning DDO, Laval, the West Island, Montreal Downtown, and the South Shore. Along the way, we added language programs, tutoring services, school partnerships, extra-curricular activities, and full-service school event planning, transforming from a summer camp into a year-round educational enrichment organization.
+            </motion.p>
+            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-[16px] text-text-body leading-relaxed">
+              Today, Laurus serves over 2,000 children annually and partners with more than 50 schools across the region. Despite our growth, the core mission has never changed: to create safe, inclusive, and joyful experiences where kids can learn, play, and discover who they are. Every program we offer is designed with that founding vision in mind.
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
       {/* Mission */}
       <section className="py-20 lg:py-28 bg-cream">
         <div className="max-w-[800px] mx-auto px-6 text-center">
@@ -134,12 +157,44 @@ export default function AboutPage() {
           </motion.h2>
           <p className="text-[16px] text-text-body max-w-[560px] mx-auto mb-8">{a.teamSub}</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            {team.map((t, i) => (
+            {[
+              { role: a.counselorsRole, desc: a.counselorsDesc, detail: "Our camp counsellors are the heart of the Laurus experience. Each one is carefully selected for their energy, creativity, and genuine love of working with children. They undergo extensive pre-season training covering activity facilitation, conflict resolution, inclusion strategies, and emergency protocols." },
+              { role: a.teachersRole, desc: a.teachersDesc, detail: "Our language teachers bring the classroom to life with immersive, activity-based instruction. Many hold education degrees or TEFL/DELF certifications, and all are fluent or native speakers. They receive ongoing professional development to stay current with best practices in second-language acquisition." },
+              { role: a.tutorsRole, desc: a.tutorsDesc, detail: "Our academic tutors are qualified educators and university students in education programs who specialize in making difficult subjects click. They work closely with parents and school teachers to align tutoring sessions with classroom curriculum and individual learning goals." },
+              { role: a.coordinatorsRole, desc: a.coordinatorsDesc, detail: "Site coordinators are experienced leaders who oversee daily operations at each location. They manage staff schedules, handle parent communication, coordinate logistics, and ensure that every program runs smoothly from the first day to the last. Most have 3+ years of experience with Laurus." },
+            ].map((t, i) => (
               <motion.div key={t.role} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="bg-gray-50 rounded-[var(--radius-md)] p-5 border border-[var(--border)] text-left">
                 <h3 className="text-[15px] font-extrabold text-navy mb-1">{t.role}</h3>
-                <p className="text-[13px] text-text-body">{t.desc}</p>
+                <p className="text-[13px] text-text-body mb-2">{t.desc}</p>
+                <p className="text-[13px] text-text-muted leading-relaxed">{t.detail}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Safety & Compliance */}
+      <section className="py-20 lg:py-28 bg-cream">
+        <div className="max-w-[900px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="coral">Safety First</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Safety &amp; Compliance
+            </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[520px] mx-auto">Your child&apos;s safety is our top priority. Here is how we ensure a secure environment at every location.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { icon: "shield" as const, title: "Background Checks", desc: "Every staff member undergoes a thorough criminal background check and vulnerable sector screening before being hired. We verify references and conduct in-person interviews to ensure the highest standards of character and professionalism." },
+              { icon: "heart" as const, title: "CPR & First Aid Certified", desc: "All counsellors, coordinators, and on-site staff hold current CPR and First Aid certifications. We maintain fully stocked first aid kits at every location and have designated first responders on duty at all times during programming." },
+              { icon: "clipboard" as const, title: "Emergency Protocols", desc: "We maintain comprehensive emergency action plans for every location covering fire, evacuation, severe weather, medical emergencies, and lockdown procedures. Staff are drilled on these protocols during pre-season training and throughout the year." },
+              { icon: "graduation-cap" as const, title: "Ongoing Training", desc: "Safety training does not stop after orientation. Our team participates in regular professional development sessions covering topics like allergy management, mental health awareness, anti-bullying strategies, and inclusive programming practices." },
+            ].map((item, i) => (
+              <Card key={i} accent="coral" icon={item.icon} delay={i * 0.08}>
+                <h3 className="text-[17px] font-extrabold text-navy mb-2">{item.title}</h3>
+                <p className="text-[14px] text-text-body leading-relaxed">{item.desc}</p>
+              </Card>
             ))}
           </div>
         </div>

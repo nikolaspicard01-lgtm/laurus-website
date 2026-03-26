@@ -18,32 +18,31 @@ const agePrograms = [
   { icon: "graduation-cap" as IconName, title: "C.I.T. Program", ages: "Age 15+", description: "Counselor-in-Training with Shadow → Assist → Lead model. Completion certificate recognized by schools and employers.", accent: "mint" as const, href: "/summer-camp/programs/cit" },
 ];
 
-const activities: { icon: IconName; iconClass: string; name: string }[] = [
-  { icon: "bot", iconClass: "text-blue", name: "Robotics" },
-  { icon: "music", iconClass: "text-coral", name: "Dance" },
-  { icon: "dumbbell", iconClass: "text-mint-dark", name: "Multi-Sport" },
-  { icon: "utensils", iconClass: "text-sunshine-dark", name: "Cooking" },
-  { icon: "monitor", iconClass: "text-violet", name: "Coding" },
-  { icon: "languages", iconClass: "text-blue", name: "Languages" },
-  { icon: "flask", iconClass: "text-coral", name: "Science" },
-  { icon: "palette", iconClass: "text-sunshine-dark", name: "Visual Arts" },
-  { icon: "target", iconClass: "text-mint-dark", name: "Soccer" },
-  { icon: "theater", iconClass: "text-violet", name: "Drama" },
-  { icon: "music", iconClass: "text-blue", name: "Music" },
+const activities: { icon: IconName; iconClass: string; name: string; description: string }[] = [
+  { icon: "bot", iconClass: "text-blue", name: "Robotics", description: "Learn coding, engineering, and design through hands-on robotics projects and competitions." },
+  { icon: "music", iconClass: "text-coral", name: "Dance", description: "Explore hip-hop, contemporary, ballet, and more with professional choreographers." },
+  { icon: "dumbbell", iconClass: "text-mint-dark", name: "Multi-Sport", description: "Master fundamentals of soccer, basketball, volleyball, and other sports with certified coaches." },
+  { icon: "utensils", iconClass: "text-sunshine-dark", name: "Cooking", description: "Create delicious dishes while learning nutrition, kitchen skills, and cultural cuisines." },
+  { icon: "monitor", iconClass: "text-violet", name: "Coding", description: "Build games, apps, and websites using age-appropriate programming languages." },
+  { icon: "languages", iconClass: "text-blue", name: "Languages", description: "Learn French or English through immersive games, culture, and conversations." },
+  { icon: "flask", iconClass: "text-coral", name: "Science", description: "Conduct experiments and learn about biology, physics, chemistry in interactive sessions." },
+  { icon: "palette", iconClass: "text-sunshine-dark", name: "Visual Arts", description: "Paint, sculpt, and create with various mediums under guidance of experienced artists." },
+  { icon: "target", iconClass: "text-mint-dark", name: "Soccer", description: "Develop advanced soccer techniques with certified coaches in competitive and recreational settings." },
+  { icon: "theater", iconClass: "text-violet", name: "Drama", description: "Perform on stage, develop confidence, and express creativity through theater and improvisation." },
+  { icon: "music", iconClass: "text-blue", name: "Music", description: "Learn instruments, singing, music production, and perform in our end-of-summer showcase." },
 ];
 
 const schedule = [
-  { time: "7:30 AM", activity: "Early Care / Drop-off", color: "bg-blue/10 text-blue" },
-  { time: "9:00 AM", activity: "Morning Assembly & Warm-Up", color: "bg-mint/10 text-mint-dark" },
-  { time: "9:30 AM", activity: "STA Block 1", color: "bg-coral/10 text-coral" },
-  { time: "10:45 AM", activity: "Snack & Free Play", color: "bg-sunshine/10 text-sunshine-dark" },
-  { time: "11:15 AM", activity: "STA Block 2", color: "bg-violet/10 text-violet" },
-  { time: "12:15 PM", activity: "Lunch", color: "bg-sunshine/10 text-sunshine-dark" },
-  { time: "1:00 PM", activity: "Outdoor Play & Guest Speakers", color: "bg-mint/10 text-mint-dark" },
-  { time: "2:00 PM", activity: "STA Block 3", color: "bg-blue/10 text-blue" },
-  { time: "3:15 PM", activity: "Creative Projects & Team Challenges", color: "bg-coral/10 text-coral" },
-  { time: "4:00 PM", activity: "Regular Pick-Up", color: "bg-sunshine/10 text-sunshine-dark" },
-  { time: "4:00–5:30 PM", activity: "Extended Care", color: "bg-blue/10 text-blue" },
+  { time: "7:30–9:00 AM", activity: "Early Care", subtitle: "Safe arrival and morning activities for early birds", color: "bg-blue/10 text-blue" },
+  { time: "9:00–10:15 AM", activity: "Block 1", subtitle: "First activity block - sports, arts, or STEM rotation", color: "bg-mint/10 text-mint-dark" },
+  { time: "10:15–10:30 AM", activity: "Snack Time", subtitle: "Healthy snacks and hydration break", color: "bg-sunshine/10 text-sunshine-dark" },
+  { time: "10:30–11:45 AM", activity: "STAs", subtitle: "Choose from 11 diverse activity categories", color: "bg-coral/10 text-coral" },
+  { time: "11:45 AM–12:45 PM", activity: "Lunch & Social", subtitle: "Lunch provided or bring your own + free play", color: "bg-sunshine/10 text-sunshine-dark" },
+  { time: "12:45–2:00 PM", activity: "Block 2", subtitle: "Second activity rotation", color: "bg-violet/10 text-violet" },
+  { time: "2:00–3:15 PM", activity: "Block 3", subtitle: "Final activity block with outdoor time", color: "bg-mint/10 text-mint-dark" },
+  { time: "3:15–3:30 PM", activity: "Closing Circle", subtitle: "Reflect on the day and celebrate achievements", color: "bg-coral/10 text-coral" },
+  { time: "3:30–4:00 PM", activity: "Regular Pick-up", subtitle: "Standard dismissal time", color: "bg-blue/10 text-blue" },
+  { time: "4:00–5:30 PM", activity: "Extended Care", subtitle: "Supervised activities for those needing later pick-up", color: "bg-violet/10 text-violet" },
 ];
 
 const locations = {
@@ -142,12 +141,15 @@ export default function SummerCampPage() {
             </motion.h2>
             <p className="text-[16px] text-text-body max-w-[560px] mx-auto">Kids choose their Specific Training Activities (STAs) weekly — switch it up every week!</p>
           </div>
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {activities.map((a, i) => (
-              <motion.div key={a.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-[var(--radius-lg)] p-5 text-center shadow-[var(--shadow-xs)] border border-[var(--border)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all duration-300">
-                <div className="mb-2 flex justify-center"><Icon name={a.icon} size={24} className={a.iconClass} /></div>
-                <div className="text-[13px] font-bold text-navy">{a.name}</div>
+              <motion.div key={a.name} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                className="bg-white rounded-[var(--radius-lg)] p-6 shadow-[var(--shadow-xs)] border border-[var(--border)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all duration-300 flex gap-4 items-start">
+                <div className="shrink-0 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center"><Icon name={a.icon} size={20} className={a.iconClass} /></div>
+                <div>
+                  <div className="text-[15px] font-bold text-navy mb-1">{a.name}</div>
+                  <div className="text-[13px] text-text-body leading-relaxed">{a.description}</div>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -166,9 +168,12 @@ export default function SummerCampPage() {
           <div className="space-y-3">
             {schedule.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-4 bg-gray-50 rounded-[var(--radius-md)] p-4 border border-[var(--border)]">
-                <span className={`text-[13px] font-bold px-3 py-1 rounded-full shrink-0 ${item.color}`}>{item.time}</span>
-                <span className="text-[14px] font-semibold text-navy">{item.activity}</span>
+                className="flex items-start gap-4 bg-gray-50 rounded-[var(--radius-md)] p-4 border border-[var(--border)]">
+                <span className={`text-[12px] font-bold px-3 py-1 rounded-full shrink-0 whitespace-nowrap ${item.color}`}>{item.time}</span>
+                <div>
+                  <span className="text-[14px] font-semibold text-navy">{item.activity}</span>
+                  <p className="text-[13px] text-text-muted mt-0.5">{item.subtitle}</p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -211,7 +216,33 @@ export default function SummerCampPage() {
               </div>
             </Card>
           </div>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[900px] mx-auto">
+          {/* Early Bird Tiers */}
+          <div className="mt-12 max-w-[900px] mx-auto">
+            <h3 className="text-[20px] font-extrabold text-navy text-center mb-6">Early Bird Discount Tiers</h3>
+            <div className="grid sm:grid-cols-3 gap-5">
+              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white rounded-[var(--radius-lg)] p-6 text-center border-2 border-mint shadow-[var(--shadow-md)]">
+                <div className="text-[12px] font-bold uppercase tracking-wider text-mint-dark mb-2">Super Early Bird</div>
+                <div className="text-[13px] text-text-muted mb-1">January</div>
+                <div className="text-[clamp(1.6rem,2.5vw,2rem)] font-black text-mint-dark">25% OFF</div>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="bg-white rounded-[var(--radius-lg)] p-6 text-center border-2 border-blue shadow-[var(--shadow-md)]">
+                <div className="text-[12px] font-bold uppercase tracking-wider text-blue mb-2">Early Bird</div>
+                <div className="text-[13px] text-text-muted mb-1">March</div>
+                <div className="text-[clamp(1.6rem,2.5vw,2rem)] font-black text-blue">15% OFF</div>
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="bg-white rounded-[var(--radius-lg)] p-6 text-center border border-[var(--border)]">
+                <div className="text-[12px] font-bold uppercase tracking-wider text-text-muted mb-2">Standard</div>
+                <div className="text-[13px] text-text-muted mb-1">April+</div>
+                <div className="text-[clamp(1.6rem,2.5vw,2rem)] font-black text-navy">Full Price</div>
+              </motion.div>
+            </div>
+            {/* Urgency Card */}
+            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-6 bg-coral/10 border border-coral/30 rounded-[var(--radius-lg)] p-5 text-center">
+              <p className="text-[15px] font-bold text-coral">Only 42 out of 100 discounted spots remaining! March discounts expire soon.</p>
+            </motion.div>
+          </div>
+          {/* Additional Discounts */}
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[900px] mx-auto">
             {[
               { label: "Multi-Week (5–7)", discount: "5% off" },
               { label: "Multi-Week (8–9)", discount: "10% off" },
@@ -227,8 +258,31 @@ export default function SummerCampPage() {
         </div>
       </section>
 
+      {/* Referral Program */}
+      <section className="py-20 lg:py-24 bg-white">
+        <div className="max-w-[800px] mx-auto px-6">
+          <div className="text-center mb-10">
+            <SectionTag color="mint">Referral Rewards</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Laurus Camp Connect — Referral Program
+            </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[560px] mx-auto">It&apos;s our way of saying thanks for spreading the word!</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <Card accent="mint" icon="heart" delay={0}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">You Get</h3>
+              <p className="text-[14px] text-text-body leading-relaxed">$10 credit per week for every referred child who registers. The more families you refer, the more you save!</p>
+            </Card>
+            <Card accent="blue" icon="star" delay={0.1}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Your Friends Get</h3>
+              <p className="text-[14px] text-text-body leading-relaxed">10% off their first session — a warm welcome to the Laurus summer camp family.</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Locations */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1320px] mx-auto px-6">
           <div className="text-center mb-14">
             <SectionTag color="blue">17+ Locations</SectionTag>
@@ -258,8 +312,46 @@ export default function SummerCampPage() {
         </div>
       </section>
 
-      {/* Add-ons */}
+      {/* Lunch Box Program */}
       <section className="py-20 lg:py-24 bg-cream">
+        <div className="max-w-[900px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="sunshine">Lunch Box Program</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Healthy, Delicious Meals — Prepared Daily
+            </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[560px] mx-auto">Prepared by Les Petits Chefs certified nutritionists. Nut-free facility. Accommodations for dietary restrictions available.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6 max-w-[700px] mx-auto">
+            <Card accent="sunshine" icon="utensils" delay={0}>
+              <h3 className="text-[17px] font-extrabold text-navy mb-2">Small Box</h3>
+              <div className="text-[clamp(1.4rem,2vw,1.8rem)] font-black text-sunshine-dark mb-3">$10<span className="text-[14px] text-text-muted font-semibold">/day</span></div>
+              <ul className="text-[14px] text-text-body space-y-1.5">
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Sandwich</li>
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Fruit</li>
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Veggie snack</li>
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Drink</li>
+              </ul>
+            </Card>
+            <Card accent="coral" icon="utensils" delay={0.1}>
+              <h3 className="text-[17px] font-extrabold text-navy mb-2">Large Box</h3>
+              <div className="text-[clamp(1.4rem,2vw,1.8rem)] font-black text-coral mb-3">$12<span className="text-[14px] text-text-muted font-semibold">/day</span></div>
+              <ul className="text-[14px] text-text-body space-y-1.5">
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Full meal</li>
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Fruit</li>
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Veggies</li>
+                <li className="flex items-center gap-2"><Icon name="check-circle" size={14} className="text-mint-dark shrink-0" /> Snack + Drink</li>
+              </ul>
+            </Card>
+          </div>
+          <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-6 bg-blue/5 border border-blue/20 rounded-[var(--radius-md)] p-4 text-center max-w-[700px] mx-auto">
+            <p className="text-[13px] text-navy font-semibold">Order by Monday 7:00 AM for the week. Dietary restrictions accommodated upon request.</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Additional Add-ons */}
+      <section className="py-20 lg:py-24 bg-white">
         <div className="max-w-[900px] mx-auto px-6">
           <div className="text-center mb-14">
             <SectionTag color="violet">Add-On Services</SectionTag>
@@ -267,18 +359,13 @@ export default function SummerCampPage() {
               Everything Your Child Needs
             </motion.h2>
           </div>
-          <div className="grid sm:grid-cols-3 gap-5">
-            <Card accent="sunshine" icon="utensils" delay={0}>
-              <h3 className="text-[16px] font-extrabold text-navy mb-2">Lunch Program</h3>
-              <p className="text-[14px] text-text-body mb-2">Fresh meals by Les Petits Chefs. Nut-free, nutritionist-planned.</p>
-              <p className="text-[14px] font-bold text-sunshine-dark">$10–12/day</p>
-            </Card>
-            <Card accent="blue" icon="clock" delay={0.1}>
+          <div className="grid sm:grid-cols-2 gap-5 max-w-[600px] mx-auto">
+            <Card accent="blue" icon="clock" delay={0}>
               <h3 className="text-[16px] font-extrabold text-navy mb-2">Extended Care</h3>
               <p className="text-[14px] text-text-body mb-2">Early drop-off from 7:30 AM and late pick-up until 5:30 PM.</p>
               <p className="text-[14px] font-bold text-blue">Included at most locations</p>
             </Card>
-            <Card accent="coral" icon="shirt" delay={0.2}>
+            <Card accent="coral" icon="shirt" delay={0.1}>
               <h3 className="text-[16px] font-extrabold text-navy mb-2">Camp Merch</h3>
               <p className="text-[14px] text-text-body mb-2">Official Laurus t-shirts available for purchase.</p>
               <p className="text-[14px] font-bold text-coral">Available on-site</p>
@@ -287,8 +374,75 @@ export default function SummerCampPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Registration Process */}
+      <section className="py-20 lg:py-28 bg-cream">
+        <div className="max-w-[900px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="blue">How to Register</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              5 Simple Steps to Get Started
+            </motion.h2>
+          </div>
+          <div className="space-y-4">
+            {[
+              { step: 1, title: "Portal Sign-up", desc: "Create your account and complete parent information on our registration portal." },
+              { step: 2, title: "Info Sessions", desc: "Attend optional information sessions to learn more about programs and locations." },
+              { step: 3, title: "Welcome Package", desc: "Receive schedules, activity options, and everything you need to prepare." },
+              { step: 4, title: "Flexible Scheduling", desc: "Choose your weeks, preferred locations, and activity selections." },
+              { step: 5, title: "Progress Tracking", desc: "Access updates and photos throughout the summer via our parent portal." },
+            ].map((s, i) => (
+              <motion.div key={s.step} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="flex gap-5 items-start bg-white rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+                <div className="w-10 h-10 rounded-full bg-blue/10 flex items-center justify-center shrink-0">
+                  <span className="text-[15px] font-black text-blue">{s.step}</span>
+                </div>
+                <div>
+                  <h3 className="text-[15px] font-extrabold text-navy mb-1">{s.title}</h3>
+                  <p className="text-[14px] text-text-body leading-relaxed">{s.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs" external variant="coral" size="lg" pill>Start Registration →</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Safety & Staff */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[900px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="coral">Safety First</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Your Child&apos;s Safety Is Our #1 Priority
+            </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[560px] mx-auto">Every member of our team is trained, certified, and committed to creating a safe environment.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              { icon: "shield" as IconName, title: "Background Checked", desc: "All staff undergo comprehensive background checks before joining our team." },
+              { icon: "heart" as IconName, title: "CPR/First Aid Certified", desc: "Every counselor holds current CPR and First Aid certification." },
+              { icon: "graduation-cap" as IconName, title: "Ongoing Training", desc: "Continuous professional development throughout the summer season." },
+              { icon: "clipboard" as IconName, title: "Emergency Protocols", desc: "Detailed emergency procedures established at every location." },
+              { icon: "users" as IconName, title: "Safe Ratios", desc: "Age-appropriate staff-to-camper ratios maintained at all times." },
+              { icon: "check-circle" as IconName, title: "Daily Health Checks", desc: "Wellness monitoring to ensure every child is happy and healthy." },
+            ].map((item, i) => (
+              <motion.div key={item.title} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="bg-gray-50 rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+                <div className="w-9 h-9 rounded-full bg-coral/10 flex items-center justify-center mb-3">
+                  <Icon name={item.icon} size={18} className="text-coral" />
+                </div>
+                <h3 className="text-[15px] font-extrabold text-navy mb-1">{item.title}</h3>
+                <p className="text-[13px] text-text-body leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 lg:py-28 bg-cream">
         <div className="max-w-[1320px] mx-auto px-6">
           <div className="text-center mb-14">
             <SectionTag color="violet">FAQ</SectionTag>
@@ -297,6 +451,38 @@ export default function SummerCampPage() {
             </motion.h2>
           </div>
           <FAQ items={faqItems} />
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[1320px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="sunshine">Testimonials</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              What Families Are Saying
+            </motion.h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {[
+              { name: "Sarah Chen", detail: "Parent of 8-year-old", quote: "My son came home transformed! He made friends, tried new activities, and can't wait for next summer." },
+              { name: "David Martinez", detail: "Parent of 6-year-old", quote: "The counselors were amazing. My daughter gained so much confidence in just one session!" },
+              { name: "Emma Wilson", detail: "Age 11", quote: "Best summer ever! I made lifelong friends and learned skills I'll use forever." },
+              { name: "Jennifer Kim", detail: "Parent of 9-year-old", quote: "The variety of activities was perfect. My child tried coding, dance, and sports—found new passions!" },
+              { name: "Michael Johnson", detail: "Parent of 7-year-old", quote: "Safe, nurturing, and fun. We trust Laurus completely with our children." },
+              { name: "Alex Rodriguez", detail: "Age 13", quote: "The leadership program changed me. I learned so much about myself and helping others." },
+              { name: "Lisa Thompson", detail: "Parent of 5-year-old", quote: "Outstanding staff, inclusive environment, and my child grew in confidence every week!" },
+              { name: "Robert Chang", detail: "Parent of 10-year-old", quote: "Love the flexible scheduling and the way activities are personalized for each child." },
+              { name: "Amanda Foster", detail: "Parent of 7 & 11-year-old", quote: "Excellent instruction across all programs. My kids learned skills AND had incredible fun!" },
+            ].map((t, i) => (
+              <motion.div key={t.name} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
+                className="bg-white rounded-[var(--radius-lg)] p-6 border border-[var(--border)] shadow-[var(--shadow-xs)]">
+                <div className="text-[14px] text-text-body leading-relaxed mb-4 italic">&ldquo;{t.quote}&rdquo;</div>
+                <div className="text-[14px] font-bold text-navy">{t.name}</div>
+                <div className="text-[12px] text-text-muted">{t.detail}</div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

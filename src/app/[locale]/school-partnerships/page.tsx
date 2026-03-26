@@ -27,6 +27,21 @@ export default function SchoolPartnershipsPage() {
     accent: s.accent,
   }));
 
+  const serviceDetails: Record<string, string> = {
+    "summerCamp": "Our flagship summer day camp runs 9 weeks across 17+ locations in the Greater Montreal area. We handle staffing, programming, and logistics so your school facility stays active and engaged all summer long. Schools earn facility-use revenue while families in the community get access to high-quality programming.",
+    "springBreak": "Week-long themed camps during March break that keep students active and learning. Each day features a unique mix of sports, arts, STEM, and outdoor adventure, all delivered on-site at your school by our trained staff. No planning required from your administration team.",
+    "tutoring": "One-on-one and small-group academic support in French, English, and Math for students in grades 1 through 11. Our certified tutors work with teachers to align sessions with curriculum goals, and we provide regular progress reports so everyone stays informed.",
+    "extraCurriculars": "After-school enrichment programs including robotics, cooking, art, drama, and sports. We design a custom menu of activities based on student interest surveys and run everything from registration to end-of-term showcases. Programs run in 8-12 week sessions throughout the school year.",
+    "schoolEvents": "Full-service event planning and execution for field days, carnivals, cultural celebrations, and more. Our team brings all equipment, supplies, and staff so your teachers can enjoy the event alongside students. We have delivered 200+ school events across the Greater Montreal area.",
+  };
+
+  const howItWorks = [
+    { num: "01", title: "Initial Consultation", desc: "We meet with your administration team to understand your school's unique needs, culture, and goals. This can be in person or virtual." },
+    { num: "02", title: "Needs Assessment", desc: "Our team evaluates your facilities, student demographics, and scheduling requirements to identify the best-fit programs and services." },
+    { num: "03", title: "Custom Proposal", desc: "We deliver a tailored proposal with recommended programs, staffing plans, timelines, and transparent pricing. No cookie-cutter packages." },
+    { num: "04", title: "Launch Programs", desc: "Once approved, we handle all logistics from hiring and training staff to marketing programs to your school community. You sit back and watch it come together." },
+  ];
+
   const benefits = [
     sp.benefit1, sp.benefit2, sp.benefit3, sp.benefit4,
     sp.benefit5, sp.benefit6, sp.benefit7, sp.benefit8,
@@ -56,8 +71,51 @@ export default function SchoolPartnershipsPage() {
             {services.map((s, i) => (
               <Card key={s.title} accent={s.accent} icon={s.icon} delay={i * 0.1}>
                 <h3 className="text-[17px] font-extrabold text-navy mb-2">{s.title}</h3>
-                <p className="text-[14px] text-text-body leading-relaxed">{s.desc}</p>
+                <p className="text-[14px] text-text-body leading-relaxed mb-2">{s.desc}</p>
+                <p className="text-[13px] text-text-muted leading-relaxed">{serviceDetails[serviceKeys[i].titleKey]}</p>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[900px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="sunshine">Getting Started</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              How It Works
+            </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[480px] mx-auto">From first conversation to program launch, we make the partnership process simple and transparent.</p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {howItWorks.map((step, i) => (
+              <motion.div key={step.num} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="bg-gray-50 rounded-[var(--radius-md)] p-5 border border-[var(--border)] text-center">
+                <div className="text-[24px] font-black text-blue/20 mb-2">{step.num}</div>
+                <h3 className="text-[15px] font-extrabold text-navy mb-1">{step.title}</h3>
+                <p className="text-[13px] text-text-body">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16 bg-white border-y border-[var(--border)]">
+        <div className="max-w-[900px] mx-auto px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { value: "50+", label: "Partner Schools" },
+              { value: "2,000+", label: "Students Served" },
+              { value: "10+", label: "Years of Experience" },
+              { value: "95%", label: "Renewal Rate" },
+            ].map((stat, i) => (
+              <motion.div key={stat.label} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="text-center">
+                <div className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-navy">{stat.value}</div>
+                <div className="text-[13px] font-semibold text-text-muted">{stat.label}</div>
+              </motion.div>
             ))}
           </div>
         </div>

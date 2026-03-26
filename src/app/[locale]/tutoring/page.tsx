@@ -10,13 +10,13 @@ import FAQ from "@/components/FAQ";
 import Icon from "@/components/Icon";
 import type { IconName } from "@/components/Icon";
 
-const subjects: { icon: IconName; name: string }[] = [
-  { icon: "ruler", name: "Math" },
-  { icon: "book-open", name: "English" },
-  { icon: "languages", name: "French" },
-  { icon: "flask", name: "Science" },
-  { icon: "clipboard", name: "Homework Help" },
-  { icon: "file-text", name: "Test Prep" },
+const subjects: { icon: IconName; name: string; description: string }[] = [
+  { icon: "ruler", name: "Math", description: "From basic arithmetic to advanced calculus \u2014 we meet your child where they are." },
+  { icon: "book-open", name: "English", description: "Reading comprehension, essay writing, grammar, and literature analysis." },
+  { icon: "languages", name: "French", description: "Oral communication, written expression, grammar, and reading for FSL and francophone students." },
+  { icon: "flask", name: "Science", description: "Biology, chemistry, physics \u2014 hands-on experiments and concept mastery." },
+  { icon: "clipboard", name: "Homework Help", description: "Daily support to stay on top of assignments and build study habits." },
+  { icon: "file-text", name: "Test Prep", description: "Strategic preparation for provincial exams, entrance tests, and standardized assessments." },
 ];
 
 const pricing = [
@@ -62,20 +62,51 @@ export default function TutoringPage() {
               Expert Support Across All Subjects
             </motion.h2>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5">
             {subjects.map((s, i) => (
               <motion.div key={s.name} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
                 className="bg-white rounded-[var(--radius-lg)] p-6 text-center shadow-[var(--shadow-sm)] border border-[var(--border)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all">
                 <div className="text-3xl mb-2"><Icon name={s.icon} size={28} /></div>
-                <div className="text-[14px] font-bold text-navy">{s.name}</div>
+                <div className="text-[14px] font-bold text-navy mb-1">{s.name}</div>
+                <div className="text-[12px] text-text-muted leading-snug">{s.description}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
+      {/* Why Choose Laurus Tutoring */}
       <section className="py-20 lg:py-28 bg-cream">
+        <div className="max-w-[1320px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="mint">Why Laurus</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              Why Choose Laurus Tutoring
+            </motion.h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <Card accent="blue" icon="target" delay={0}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Customized Learning Plans</h3>
+              <p className="text-[14px] text-text-body">Every student gets a personalized roadmap based on their assessment results.</p>
+            </Card>
+            <Card accent="coral" icon="languages" delay={0.1}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Bilingual Support</h3>
+              <p className="text-[14px] text-text-body">All tutors are fluent in English and French — learn in the language you&apos;re most comfortable with.</p>
+            </Card>
+            <Card accent="sunshine" icon="clock" delay={0.2}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Flexible Scheduling</h3>
+              <p className="text-[14px] text-text-body">In-person, virtual, group, or 1-on-1 — sessions fit around your family&apos;s schedule.</p>
+            </Card>
+            <Card accent="mint" icon="clipboard" delay={0.3}>
+              <h3 className="text-[16px] font-extrabold text-navy mb-2">Progress Tracking</h3>
+              <p className="text-[14px] text-text-body">Regular updates and reports so you always know how your child is progressing.</p>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1000px] mx-auto px-6">
           <div className="text-center mb-14">
             <SectionTag color="sunshine">Pricing</SectionTag>
@@ -119,8 +150,34 @@ export default function TutoringPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Testimonials */}
       <section className="py-20 lg:py-28 bg-cream">
+        <div className="max-w-[1320px] mx-auto px-6">
+          <div className="text-center mb-14">
+            <SectionTag color="coral">Testimonials</SectionTag>
+            <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
+              What Parents Are Saying
+            </motion.h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: "Sandra Liu", detail: "Parent of 12 year old", quote: "My son\u2019s math grade went from a C to an A in just two months of tutoring. The custom plan made all the difference." },
+              { name: "Philippe Gauthier", detail: "Parent of 9 year old", quote: "The bilingual support was exactly what we needed. Our daughter is now confident in both English and French." },
+              { name: "Karen O\u2019Brien", detail: "Parent of 15 year old", quote: "The test prep sessions gave my daughter the confidence she needed for her entrance exams. She got into her first-choice school!" },
+            ].map((t, i) => (
+              <motion.div key={t.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                className="bg-gray-50 rounded-[var(--radius-lg)] p-6 border border-[var(--border)]">
+                <p className="text-[14px] text-text-body italic mb-4">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-[14px] font-extrabold text-navy">{t.name}</p>
+                <p className="text-[12px] text-text-muted">{t.detail}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1320px] mx-auto px-6">
           <div className="text-center mb-14"><h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy">Tutoring FAQ</h2></div>
           <FAQ items={faqItems} />
