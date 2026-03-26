@@ -35,10 +35,10 @@ export default function Footer() {
   return (
     <footer className="gradient-navy text-white/80">
       <div className="h-1 bg-gradient-to-r from-blue via-sunshine to-coral" />
-      <div className="max-w-[1320px] mx-auto px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="max-w-[1320px] mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-8">
           {/* Brand */}
-          <div className="lg:col-span-1">
+          <div className="col-span-2 sm:col-span-2 lg:col-span-1">
             <Link href={p("/")} className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-blue to-mint flex items-center justify-center text-white font-[var(--font-nunito)] font-black text-lg">L</div>
               <div className="font-[var(--font-nunito)]">

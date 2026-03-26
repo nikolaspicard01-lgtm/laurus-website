@@ -44,7 +44,7 @@ export default function Card({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
-      className={`relative bg-white rounded-[var(--radius-lg)] p-8 shadow-[var(--shadow-sm)] border border-[var(--border)] ${
+      className={`relative bg-white rounded-[var(--radius-lg)] p-5 sm:p-8 shadow-[var(--shadow-sm)] border border-[var(--border)] ${
         hover
           ? "transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[var(--shadow-lg)]"
           : ""

@@ -42,7 +42,7 @@ export default function PageHero({
         <div className="absolute w-[350px] h-[350px] rounded-full bg-blue/5 -top-16 -right-16 blur-3xl" />
         <div className="absolute w-[250px] h-[250px] rounded-full bg-sunshine/6 bottom-0 left-10 blur-3xl" />
       </div>
-      <div className="relative max-w-[1320px] mx-auto px-6 py-20 lg:py-28 text-center">
+      <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-28 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ export default function PageHero({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-[17px] text-text-body max-w-[600px] mx-auto mb-8 leading-relaxed"
+          className="text-[15px] sm:text-[17px] text-text-body max-w-[600px] mx-auto mb-8 leading-relaxed"
         >
           {subtitle}
         </motion.p>
@@ -73,7 +73,7 @@ export default function PageHero({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-3"
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-3"
           >
             <Button href={ctaHref} external={ctaExternal} variant="coral" size="lg" pill>
               {ctaText}

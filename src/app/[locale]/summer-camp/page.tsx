@@ -7,7 +7,10 @@ import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import FAQ from "@/components/FAQ";
+import dynamic from "next/dynamic";
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => <div className="h-64" />,
+});
 import Icon from "@/components/Icon";
 import type { IconName } from "@/components/Icon";
 
@@ -144,7 +147,7 @@ export default function SummerCampPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {activities.map((a, i) => (
               <motion.div key={a.name} initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="bg-white rounded-[var(--radius-lg)] p-6 shadow-[var(--shadow-xs)] border border-[var(--border)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all duration-300 flex gap-4 items-start">
+                className="bg-white rounded-[var(--radius-lg)] p-4 sm:p-6 shadow-[var(--shadow-xs)] border border-[var(--border)] hover:-translate-y-1 hover:shadow-[var(--shadow-md)] transition-all duration-300 flex gap-3 sm:gap-4 items-start">
                 <div className="shrink-0 w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center"><Icon name={a.icon} size={20} className={a.iconClass} /></div>
                 <div>
                   <div className="text-[15px] font-bold text-navy mb-1">{a.name}</div>
@@ -168,8 +171,8 @@ export default function SummerCampPage() {
           <div className="space-y-3">
             {schedule.map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
-                className="flex items-start gap-4 bg-gray-50 rounded-[var(--radius-md)] p-4 border border-[var(--border)]">
-                <span className={`text-[12px] font-bold px-3 py-1 rounded-full shrink-0 whitespace-nowrap ${item.color}`}>{item.time}</span>
+                className="flex flex-col sm:flex-row items-start gap-2 sm:gap-4 bg-gray-50 rounded-[var(--radius-md)] p-3 sm:p-4 border border-[var(--border)]">
+                <span className={`text-[11px] sm:text-[12px] font-bold px-2.5 sm:px-3 py-1 rounded-full shrink-0 whitespace-nowrap ${item.color}`}>{item.time}</span>
                 <div>
                   <span className="text-[14px] font-semibold text-navy">{item.activity}</span>
                   <p className="text-[13px] text-text-muted mt-0.5">{item.subtitle}</p>
@@ -190,7 +193,7 @@ export default function SummerCampPage() {
             </motion.h2>
             <p className="text-[16px] text-text-body max-w-[560px] mx-auto">Save up to 25% with our stackable discount structure. Camp fees are tax deductible (RL-24).</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 max-w-[900px] mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6 max-w-[900px] mx-auto">
             <Card accent="blue" delay={0}>
               <div className="text-center">
                 <h3 className="text-[15px] font-extrabold text-navy mb-2">West Island & Montreal</h3>
@@ -242,14 +245,14 @@ export default function SummerCampPage() {
             </motion.div>
           </div>
           {/* Additional Discounts */}
-          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[900px] mx-auto">
+          <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-[900px] mx-auto">
             {[
               { label: "Multi-Week (5–7)", discount: "5% off" },
               { label: "Multi-Week (8–9)", discount: "10% off" },
               { label: "Sibling Discount", discount: "15% off" },
               { label: "Referral Program", discount: "$10 credit" },
             ].map((d) => (
-              <div key={d.label} className="bg-white rounded-[var(--radius-md)] p-4 text-center border border-[var(--border)]">
+              <div key={d.label} className="bg-white rounded-[var(--radius-md)] p-3 sm:p-4 text-center border border-[var(--border)]">
                 <div className="text-[14px] font-bold text-navy">{d.label}</div>
                 <div className="text-[13px] font-bold text-mint-dark">{d.discount}</div>
               </div>
@@ -392,7 +395,7 @@ export default function SummerCampPage() {
               { step: 5, title: "Progress Tracking", desc: "Access updates and photos throughout the summer via our parent portal." },
             ].map((s, i) => (
               <motion.div key={s.step} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
-                className="flex gap-5 items-start bg-white rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+                className="flex gap-3 sm:gap-5 items-start bg-white rounded-[var(--radius-lg)] p-4 sm:p-5 border border-[var(--border)]">
                 <div className="w-10 h-10 rounded-full bg-blue/10 flex items-center justify-center shrink-0">
                   <span className="text-[15px] font-black text-blue">{s.step}</span>
                 </div>

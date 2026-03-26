@@ -8,8 +8,14 @@ import CountdownBar from "@/components/CountdownBar";
 import SectionTag from "@/components/SectionTag";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import FAQ from "@/components/FAQ";
-import Testimonials from "@/components/Testimonials";
+import dynamic from "next/dynamic";
+
+const Testimonials = dynamic(() => import("@/components/Testimonials"), {
+  loading: () => <div className="h-64" />,
+});
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => <div className="h-64" />,
+});
 import Icon, { type IconName } from "@/components/Icon";
 import { AnimatedCounter } from "@/components/Animate";
 
@@ -163,7 +169,7 @@ export default function HomePage() {
             <div className="absolute w-[200px] h-[200px] rounded-full bg-coral/5 top-1/2 right-1/4 blur-3xl animate-[float-slow_12s_ease-in-out_infinite_reverse]" />
           </div>
 
-          <div className="relative max-w-[1320px] mx-auto px-6 py-20 lg:py-28">
+          <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-28">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               {/* Left: Content */}
               <div>
@@ -205,7 +211,7 @@ export default function HomePage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
-                  className="flex flex-wrap gap-3"
+                  className="flex flex-col sm:flex-row flex-wrap gap-3"
                 >
                   <Button href="/summer-camp" variant="coral" size="lg" pill>
                     <Icon name="sun" size={18} className="inline -mt-0.5" /> Summer Camp
@@ -223,7 +229,7 @@ export default function HomePage() {
               </div>
 
               {/* Right: Program Cards */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {[
                   { icon: <Icon name="tent" size={32} className="text-blue" />, title: "Summer Camp", sub: "Ages 3–15", delay: 0.2 },
                   { icon: <Icon name="flower" size={32} className="text-coral" />, title: "Spring Break", sub: "March 2–6", delay: 0.3 },
@@ -235,7 +241,7 @@ export default function HomePage() {
                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{ duration: 0.5, delay: card.delay }}
-                    className="bg-white rounded-[var(--radius-lg)] p-6 shadow-[var(--shadow-md)] border border-[var(--border)] text-center hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] transition-all duration-300"
+                    className="bg-white rounded-[var(--radius-lg)] p-4 sm:p-6 shadow-[var(--shadow-md)] border border-[var(--border)] text-center hover:-translate-y-1 hover:shadow-[var(--shadow-lg)] transition-all duration-300"
                   >
                     <div className="flex justify-center mb-3">{card.icon}</div>
                     <h3 className="text-[15px] font-extrabold text-navy mb-1">
@@ -275,7 +281,7 @@ export default function HomePage() {
         {/* ========== STATS BAR ========== */}
         <section className="bg-white py-14">
           <div className="max-w-[1320px] mx-auto px-6">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -382,7 +388,7 @@ export default function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-gray-50 rounded-[var(--radius-lg)] p-6 border border-[var(--border)]"
+                  className="bg-gray-50 rounded-[var(--radius-lg)] p-4 sm:p-6 border border-[var(--border)]"
                 >
                   <h3 className="text-[15px] font-extrabold text-navy mb-4 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue" />
@@ -588,7 +594,7 @@ export default function HomePage() {
                 Give your child an unforgettable experience this summer. Join
                 2,000+ families who trust Laurus every year.
               </p>
-              <div className="flex flex-wrap justify-center gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
                 <Button
                   href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs"
                   external

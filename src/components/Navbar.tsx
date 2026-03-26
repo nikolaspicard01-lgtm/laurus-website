@@ -133,9 +133,9 @@ export default function Navbar() {
 
       {/* Main Navbar */}
       <nav className={`sticky top-0 z-[100] transition-all duration-300 ${scrolled ? "bg-white/85 backdrop-blur-xl shadow-md" : "bg-white/60 backdrop-blur-lg"} border-b border-[var(--border)]`}>
-        <div className="max-w-[1320px] mx-auto px-6 h-[72px] flex items-center justify-between">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 h-[64px] sm:h-[72px] flex items-center justify-between">
           {/* Logo */}
-          <Link href={p("/")} className="flex items-center gap-3 shrink-0">
+          <Link href={p("/")} className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
             <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-blue to-mint flex items-center justify-center text-white font-[var(--font-nunito)] font-black text-lg shadow-md">L</div>
             <div className="font-[var(--font-nunito)]">
               <div className="text-[17px] font-black tracking-tight text-navy leading-tight">
@@ -170,7 +170,7 @@ export default function Navbar() {
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
             <a href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs" target="_blank" rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-2 px-6 py-3 rounded-full gradient-coral text-white text-[14px] font-bold shadow-[var(--shadow-coral)] hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all">
+              className="hidden sm:inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full gradient-coral text-white text-[13px] sm:text-[14px] font-bold shadow-[var(--shadow-coral)] hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all whitespace-nowrap">
               {t.register} <ArrowRight />
             </a>
             <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 rounded-xl hover:bg-gray-100 transition-colors" aria-label="Toggle menu">

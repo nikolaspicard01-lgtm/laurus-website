@@ -92,7 +92,7 @@ export default function LocationPageContent({ location, type }: Props) {
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute w-[350px] h-[350px] rounded-full bg-blue/5 -top-16 -right-16 blur-3xl" />
         </div>
-        <div className="relative max-w-[1320px] mx-auto px-6 py-20 lg:py-28 text-center">
+        <div className="relative max-w-[1320px] mx-auto px-4 sm:px-6 py-12 sm:py-20 lg:py-28 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <SectionTag color={isSummer ? "sunshine" : "coral"} dot>
               {location.dates}
@@ -113,7 +113,7 @@ export default function LocationPageContent({ location, type }: Props) {
               className="text-[14px] text-text-muted mb-6">{location.address}</motion.p>
           )}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="flex flex-wrap justify-center gap-3">
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
             <Button href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs" external variant="coral" size="lg" pill>
               Register Now →
             </Button>
@@ -127,7 +127,7 @@ export default function LocationPageContent({ location, type }: Props) {
       {/* Pricing & Details */}
       <section className="py-16 bg-white">
         <div className="max-w-[900px] mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             <Card accent="blue" delay={0}>
               <div className="text-center">
                 <h3 className="text-[14px] font-bold text-text-muted mb-2">Early Bird Price</h3>
@@ -247,7 +247,7 @@ export default function LocationPageContent({ location, type }: Props) {
             <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-navy mt-5 mb-4">Programs Available at {location.name}</h2>
             <p className="text-[15px] text-text-muted max-w-[600px] mx-auto">Four age-based programs designed to give every camper the perfect experience.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {programs.map((program, i) => (
               <motion.div key={program.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
                 <Card accent={program.color} delay={0}>
@@ -282,7 +282,7 @@ export default function LocationPageContent({ location, type }: Props) {
           <div className="space-y-3">
             {scheduleItems.map((item, i) => (
               <motion.div key={item.time} initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
-                className="flex items-center gap-4 bg-cream rounded-[var(--radius-sm)] p-4 border border-[var(--border)]">
+                className="flex items-center gap-3 sm:gap-4 bg-cream rounded-[var(--radius-sm)] p-3 sm:p-4 border border-[var(--border)]">
                 <span className="w-9 h-9 rounded-full bg-sunshine/15 flex items-center justify-center shrink-0">
                   <Icon name={item.icon} size={16} className="text-sunshine-dark" />
                 </span>
@@ -361,7 +361,7 @@ export default function LocationPageContent({ location, type }: Props) {
             <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-navy mt-5 mb-4">Explore Other Locations</h2>
             <p className="text-[15px] text-text-muted">Find the perfect Laurus camp location for your family.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {siblingLocations.map((loc, i) => (
               <motion.div key={loc.slug} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
                 <Card accent={i % 3 === 0 ? "blue" : i % 3 === 1 ? "coral" : "mint"} delay={0}>

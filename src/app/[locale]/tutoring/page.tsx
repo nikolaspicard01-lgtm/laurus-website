@@ -6,7 +6,10 @@ import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-import FAQ from "@/components/FAQ";
+import dynamic from "next/dynamic";
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => <div className="h-64" />,
+});
 import Icon from "@/components/Icon";
 import type { IconName } from "@/components/Icon";
 
