@@ -54,6 +54,7 @@ import {
   Blocks,
   Brush,
   Footprints,
+  ArrowLeft,
   type LucideIcon,
 } from "lucide-react";
 
@@ -113,6 +114,7 @@ const iconMap = {
   blocks: Blocks,
   brush: Brush,
   footprints: Footprints,
+  "arrow-left": ArrowLeft,
 } as const;
 
 export type IconName = keyof typeof iconMap;

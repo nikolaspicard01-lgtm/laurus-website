@@ -5,6 +5,7 @@ import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import { useLocale } from "@/lib/LocaleContext";
 
 const partners = [
   { icon: "calendar" as const, name: "Agendrix", role: "Staff Scheduling & Operations", desc: "Professional staff scheduling platform that ensures our team is organized and every location is properly staffed.", accent: "blue" as const },
@@ -14,13 +15,15 @@ const partners = [
 ];
 
 export default function PartnersPage() {
+  const { dict } = useLocale();
+
   return (
     <PageWrapper>
       <PageHero
-        tag="Partners"
+        tag={dict.partners.heroTag}
         tagColor="mint"
-        title={<>Our Trusted <span className="hl-blue">Partners</span></>}
-        subtitle="We work with industry-leading partners to deliver the best possible experience for every child and family."
+        title={<>{dict.partners.heroTitle} <span className="hl-blue">{dict.partners.heroHighlight}</span></>}
+        subtitle={dict.partners.heroSub}
       />
 
       <section className="py-20 lg:py-28 bg-white">
@@ -41,9 +44,9 @@ export default function PartnersPage() {
 
       <section className="py-20 lg:py-24 gradient-navy text-center">
         <div className="max-w-[700px] mx-auto px-6">
-          <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-white mb-4">Interested in Partnering?</h2>
-          <p className="text-[16px] text-white/60 mb-8">We&apos;re always looking for partners who share our commitment to child enrichment.</p>
-          <Button href="/contact" variant="coral" size="lg" pill>Get in Touch →</Button>
+          <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-white mb-4">{dict.partners.ctaTitle}</h2>
+          <p className="text-[16px] text-white/60 mb-8">{dict.partners.ctaSub}</p>
+          <Button href="/contact" variant="coral" size="lg" pill>{dict.common.getInTouch}</Button>
         </div>
       </section>
     </PageWrapper>

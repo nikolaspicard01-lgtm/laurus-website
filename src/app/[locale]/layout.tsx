@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isValidLocale, locales, type Locale } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/LocaleContext";
+import { getPageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return getPageMetadata("home", locale as Locale);
+}
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));

@@ -6,45 +6,50 @@ import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import { useLocale } from "@/lib/LocaleContext";
 
-const services = [
-  { icon: "sun" as const, title: "Summer Camp", desc: "Full summer programming at your school or nearby venues. All ages, all activities.", accent: "sunshine" as const },
-  { icon: "flower" as const, title: "Spring Break Camp", desc: "Week-long March Break camps with our proven STA activity model.", accent: "coral" as const },
-  { icon: "book-open" as const, title: "Tutoring Services", desc: "Bilingual academic support in Math, English, French, and Science.", accent: "blue" as const },
-  { icon: "palette" as const, title: "Extra-Curriculars", desc: "PED Day Camps, After-School Enrichment, Reading Week, and Themed Break programs.", accent: "violet" as const },
-  { icon: "party-popper" as const, title: "School Events", desc: "Carnival days, field days, talent shows, seasonal festivals, and workshops.", accent: "mint" as const },
-];
-
-const benefits = [
-  "Saves administrative time and resources",
-  "Enhances student engagement and enrichment",
-  "Aligns with curriculum and learning goals",
-  "Builds an inclusive culture for all students",
-  "Proven track record with 50+ partner schools",
-  "Professional, certified staff at every event",
-  "Flexible scheduling and customizable programs",
-  "Year-round programming beyond summer",
+const serviceKeys = [
+  { icon: "sun" as const, titleKey: "summerCamp" as const, descKey: "summerCampDesc" as const, accent: "sunshine" as const },
+  { icon: "flower" as const, titleKey: "springBreak" as const, descKey: "springBreakDesc" as const, accent: "coral" as const },
+  { icon: "book-open" as const, titleKey: "tutoring" as const, descKey: "tutoringDesc" as const, accent: "blue" as const },
+  { icon: "palette" as const, titleKey: "extraCurriculars" as const, descKey: "extraCurricularDesc" as const, accent: "violet" as const },
+  { icon: "party-popper" as const, titleKey: "schoolEvents" as const, descKey: null, accent: "mint" as const },
 ];
 
 export default function SchoolPartnershipsPage() {
+  const { locale, dict } = useLocale();
+  const sp = dict.schoolPartnerships;
+
+  const services = serviceKeys.map((s) => ({
+    icon: s.icon,
+    title: (dict.nav as Record<string, string>)[s.titleKey],
+    desc: s.descKey ? (dict.programs as Record<string, string>)[s.descKey] : dict.events.heroSub,
+    accent: s.accent,
+  }));
+
+  const benefits = [
+    sp.benefit1, sp.benefit2, sp.benefit3, sp.benefit4,
+    sp.benefit5, sp.benefit6, sp.benefit7, sp.benefit8,
+  ];
+
   return (
     <PageWrapper>
       <PageHero
-        tag="For Schools"
+        tag={sp.heroTag}
         tagColor="blue"
-        title={<>Partner With <span className="hl-blue">Laurus</span> for Your School</>}
-        subtitle="Turnkey enrichment programming for schools. From camps to tutoring to events — we handle it all so you can focus on your students. 50+ schools already trust us."
-        ctaText="Become a Partner"
-        ctaHref="/contact"
+        title={<>{sp.heroTitle} <span className="hl-blue">{sp.heroHighlight}</span> {sp.heroTitle2}</>}
+        subtitle={sp.heroSub}
+        ctaText={dict.common.getInTouch}
+        ctaHref={`/${locale}/contact`}
         gradient="blue"
       />
 
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1320px] mx-auto px-6">
           <div className="text-center mb-14">
-            <SectionTag color="blue">Our Services</SectionTag>
+            <SectionTag color="blue">{dict.nav.forSchools}</SectionTag>
             <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
-              Everything Your School Needs
+              {sp.ourServicesTitle}
             </motion.h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -61,9 +66,9 @@ export default function SchoolPartnershipsPage() {
       <section className="py-20 lg:py-28 bg-cream">
         <div className="max-w-[800px] mx-auto px-6">
           <div className="text-center mb-14">
-            <SectionTag color="mint">Why Partner With Us</SectionTag>
+            <SectionTag color="mint">{dict.nav.forSchools}</SectionTag>
             <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
-              Benefits for Your School
+              {sp.benefitsTitle}
             </motion.h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -82,12 +87,12 @@ export default function SchoolPartnershipsPage() {
 
       <section className="py-20 lg:py-24 gradient-navy text-center">
         <div className="max-w-[700px] mx-auto px-6">
-          <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-white mb-3">Join 50+ Partner Schools</h2>
-          <p className="text-[18px] font-bold text-white/70 mb-2">Let&apos;s build something great together.</p>
-          <p className="text-[15px] text-white/50 mb-8">Contact us to discuss how Laurus can serve your school community.</p>
+          <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-white mb-3">{sp.ctaTitle}</h2>
+          <p className="text-[18px] font-bold text-white/70 mb-2">{sp.ctaSub}</p>
+          <p className="text-[15px] text-white/50 mb-8">{sp.ctaSubline}</p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Button href="/contact" variant="coral" size="lg" pill>Get Started →</Button>
-            <Button href="tel:+15146000504" variant="outline" size="lg" pill className="!border-white/20 !text-white hover:!bg-white/10">Call (514) 600-0504</Button>
+            <Button href={`/${locale}/contact`} variant="coral" size="lg" pill>{dict.common.getInTouch}</Button>
+            <Button href="tel:+15146000504" variant="outline" size="lg" pill className="!border-white/20 !text-white hover:!bg-white/10">{dict.common.phone} (514) 600-0504</Button>
           </div>
         </div>
       </section>
