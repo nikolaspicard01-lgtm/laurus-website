@@ -427,6 +427,196 @@ export default function LocationPageContent({ location, type }: Props) {
         </section>
       )}
 
+      {/* ========== SAMPLE WEEKLY SCHEDULE ========== */}
+      {isSummer && (
+        <section className="py-16 lg:py-20 bg-white">
+          <div className="max-w-[900px] mx-auto px-4 sm:px-6">
+            <div className="text-center mb-8">
+              <SectionTag color="blue">Sample Week</SectionTag>
+              <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-navy mt-5 mb-2">What a Week Looks Like</h2>
+              <p className="text-[14px] text-text-muted">Your child picks one STA per week. Here&apos;s an example if they chose Robotics:</p>
+            </div>
+            <div className="overflow-x-auto -mx-4 px-4">
+              <table className="w-full min-w-[600px] text-[13px]">
+                <thead>
+                  <tr>
+                    <th className="text-left py-3 px-3 text-[12px] font-bold uppercase tracking-wider text-text-muted bg-gray-50 rounded-tl-[var(--radius-sm)]">Time</th>
+                    {["Mon", "Tue", "Wed", "Thu", "Fri"].map((day) => (
+                      <th key={day} className="text-center py-3 px-2 text-[12px] font-bold uppercase tracking-wider text-text-muted bg-gray-50 last:rounded-tr-[var(--radius-sm)]">{day}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { time: "7:30–9:00", activity: "Early Care & Drop-off", color: "text-text-muted" },
+                    { time: "9:00–10:15", activity: "Robotics STA", color: "text-blue font-bold" },
+                    { time: "10:15–10:30", activity: "Snack Break", color: "text-text-muted" },
+                    { time: "10:30–11:45", activity: "Outdoor Games", color: "text-mint-dark font-semibold" },
+                    { time: "11:45–12:45", activity: "Lunch & Free Play", color: "text-text-muted" },
+                    { time: "12:45–2:00", activity: "Team Challenges", color: "text-coral font-semibold" },
+                    { time: "2:00–3:15", activity: "Robotics STA", color: "text-blue font-bold" },
+                    { time: "3:15–3:30", activity: "Closing Circle", color: "text-text-muted" },
+                    { time: "3:30–4:00", activity: "Pick-up", color: "text-text-muted" },
+                    { time: "4:00–5:30", activity: "Extended Care", color: "text-text-muted" },
+                  ].map((row, i) => (
+                    <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50/50"}>
+                      <td className="py-2.5 px-3 font-bold text-navy whitespace-nowrap">{row.time}</td>
+                      {Array.from({ length: 5 }).map((_, j) => (
+                        <td key={j} className={`py-2.5 px-2 text-center ${row.color}`}>{row.activity}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[12px] text-text-muted text-center mt-4">Next week, they can switch to Dance, Cooking, Science, or any other STA — their choice!</p>
+          </div>
+        </section>
+      )}
+
+      {/* ========== YOUR CHILD'S FIRST DAY ========== */}
+      <section className="py-16 lg:py-20 bg-cream">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8">
+            <SectionTag color="sunshine">First Day Guide</SectionTag>
+            <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-navy mt-5 mb-2">Your Child&apos;s First Day</h2>
+            <p className="text-[14px] text-text-muted">Here&apos;s exactly what to expect so you and your child feel prepared.</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            <div className="bg-white rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+              <h3 className="text-[15px] font-bold text-navy mb-3 flex items-center gap-2">
+                <Icon name="clipboard" size={18} className="text-blue" /> What to Pack
+              </h3>
+              <ul className="space-y-2">
+                {[
+                  "Sunscreen (applied before arrival)",
+                  "Water bottle (labeled with name)",
+                  "Hat and comfortable clothes",
+                  "Running shoes (closed-toe)",
+                  "Lunch and snacks (or order our lunch program)",
+                  "Change of clothes in a labeled bag",
+                  "Any required medication (give to staff at drop-off)",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-[13px] text-text-body">
+                    <Icon name="check-circle" size={14} className="text-mint-dark shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+              <h3 className="text-[15px] font-bold text-navy mb-3 flex items-center gap-2">
+                <Icon name="sun" size={18} className="text-sunshine-dark" /> What to Expect
+              </h3>
+              <ul className="space-y-2.5">
+                {[
+                  { bold: "Drop-off (7:30–9:00 AM):", text: "Pull up, a counselor greets your child by name, and walks them to their group. Quick and easy." },
+                  { bold: "First morning:", text: "Ice-breaker games, group introductions, and a tour of the facility. Your child will know everyone by lunch." },
+                  { bold: "Activities start right away:", text: "No wasted time. Your child jumps into their chosen STA by mid-morning." },
+                  { bold: "Communication:", text: "You'll receive a welcome package with your child's group, counselor name, and daily schedule." },
+                  { bold: "Pick-up (3:30–4:00 PM):", text: "Show ID, sign out, and hear about your child's day. Extended care available until 5:30 PM." },
+                ].map((item) => (
+                  <li key={item.bold} className="text-[13px] text-text-body">
+                    <span className="font-bold text-navy">{item.bold}</span> {item.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="mt-5 bg-blue/5 border border-blue/15 rounded-[var(--radius-md)] p-4 text-center">
+            <p className="text-[13px] text-text-body"><Icon name="heart" size={14} className="text-blue inline -mt-0.5" /> <span className="font-bold text-navy">Nervous kids are normal.</span> Our counselors are trained to help first-timers feel welcome. Most kids are smiling within 20 minutes.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== DROP-OFF & PICK-UP ========== */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6">
+          <div className="text-center mb-8">
+            <h3 className="text-[18px] font-extrabold text-navy mb-2">Drop-off & Pick-up Details</h3>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-5">
+            <div className="bg-gray-50 rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+              <h4 className="text-[14px] font-bold text-navy mb-3 flex items-center gap-2">
+                <Icon name="clock" size={16} className="text-blue" /> Morning Drop-off
+              </h4>
+              <ul className="space-y-2 text-[13px] text-text-body">
+                <li><span className="font-bold text-navy">Early care:</span> 7:30 AM – 9:00 AM</li>
+                <li><span className="font-bold text-navy">Where:</span> Main entrance — look for Laurus signage</li>
+                <li><span className="font-bold text-navy">Process:</span> Drive up or walk in, a counselor checks your child in by name</li>
+                <li><span className="font-bold text-navy">Medication:</span> Hand any medication directly to the Site Director at drop-off</li>
+              </ul>
+            </div>
+            <div className="bg-gray-50 rounded-[var(--radius-lg)] p-5 border border-[var(--border)]">
+              <h4 className="text-[14px] font-bold text-navy mb-3 flex items-center gap-2">
+                <Icon name="users" size={16} className="text-coral" /> Afternoon Pick-up
+              </h4>
+              <ul className="space-y-2 text-[13px] text-text-body">
+                <li><span className="font-bold text-navy">Regular:</span> 3:30 PM – 4:00 PM</li>
+                <li><span className="font-bold text-navy">Extended care:</span> Until 5:30 PM ({location.extendedCare === "Included" ? "included" : location.extendedCare})</li>
+                <li><span className="font-bold text-navy">ID required:</span> Government-issued photo ID for all pick-ups</li>
+                <li><span className="font-bold text-navy">Authorized list:</span> Only pre-authorized individuals can pick up your child</li>
+                <li><span className="font-bold text-navy">Late pick-up:</span> Please call ahead — fees may apply after 5:30 PM</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========== GOOGLE REVIEWS + CANCELLATION + REGISTRATION STEPS ========== */}
+      <section className="py-16 lg:py-20 bg-cream">
+        <div className="max-w-[900px] mx-auto px-4 sm:px-6">
+          {/* Google Review Badge */}
+          <div className="bg-white rounded-[var(--radius-lg)] p-5 border border-[var(--border)] mb-6 flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="flex gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <svg key={i} className={`w-5 h-5 ${i < 5 ? "text-sunshine" : "text-gray-200"}`} fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <span className="text-[20px] font-black text-navy">4.8</span>
+            </div>
+            <div className="text-center sm:text-left">
+              <p className="text-[14px] font-bold text-navy">Rated 4.8/5 by parents on Google</p>
+              <p className="text-[12px] text-text-muted">Based on 230+ reviews across all locations</p>
+            </div>
+          </div>
+
+          {/* After You Register Steps */}
+          <div className="mb-6">
+            <h3 className="text-[18px] font-extrabold text-navy mb-5 text-center">After You Click &ldquo;Register&rdquo;</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {[
+                { step: "1", title: "Create Account", desc: "Quick Amilia signup — takes 2 minutes", color: "bg-blue/10 text-blue" },
+                { step: "2", title: "Pick Your Weeks", desc: "Choose which weeks and location work for you", color: "bg-coral/10 text-coral" },
+                { step: "3", title: "Choose Activities", desc: "Select your child's STAs — change anytime", color: "bg-sunshine/10 text-sunshine-dark" },
+                { step: "4", title: "You're In!", desc: "Pay securely and receive your welcome package", color: "bg-mint/10 text-mint-dark" },
+              ].map((s) => (
+                <div key={s.step} className="bg-white rounded-[var(--radius-md)] p-4 border border-[var(--border)] text-center">
+                  <div className={`w-8 h-8 rounded-full ${s.color} flex items-center justify-center mx-auto mb-2 text-[14px] font-black`}>{s.step}</div>
+                  <h4 className="text-[14px] font-bold text-navy mb-1">{s.title}</h4>
+                  <p className="text-[12px] text-text-muted">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Cancellation Policy */}
+          <div className="bg-white rounded-[var(--radius-md)] p-5 border border-[var(--border)] flex flex-col sm:flex-row items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-coral/10 flex items-center justify-center shrink-0">
+              <Icon name="shield" size={18} className="text-coral" />
+            </div>
+            <div>
+              <h4 className="text-[14px] font-bold text-navy mb-1">Flexible Cancellation Policy</h4>
+              <p className="text-[13px] text-text-body leading-relaxed">Changed your mind? Cancel anytime for a $50 processing fee, refund within 14 business days. No questions asked. We want you to register with confidence — not stress.</p>
+              <p className="text-[12px] text-text-muted mt-2">Questions about cancellation? Call <a href="tel:+15146000504" className="text-blue hover:underline">(514) 600-0504</a> or email <a href="mailto:info@laurussummercamp.com" className="text-blue hover:underline">info@laurussummercamp.com</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ========== OTHER LOCATIONS ========== */}
       <section className="py-14 bg-white">
         <div className="max-w-[900px] mx-auto px-4 sm:px-6">
