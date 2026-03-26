@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
@@ -11,8 +10,14 @@ import dynamic from "next/dynamic";
 const FAQ = dynamic(() => import("@/components/FAQ"), {
   loading: () => <div className="h-64" />,
 });
+const LocationExplorer = dynamic(() => import("@/components/LocationExplorer"), {
+  ssr: false,
+  loading: () => <div className="h-96 bg-gray-50 animate-pulse rounded-[var(--radius-lg)]" />,
+});
 import Icon from "@/components/Icon";
 import type { IconName } from "@/components/Icon";
+import { useLocale } from "@/lib/LocaleContext";
+import { summerLocations } from "@/data/locations";
 
 const agePrograms = [
   { icon: "baby" as IconName, title: "Junior Camp", ages: "Ages 3–4", description: "Play-based learning, sensory play, music & movement, nature exploration. Low ratios, rest time included. Potty training not required.", accent: "blue" as const, href: "/summer-camp/programs/junior" },
@@ -48,34 +53,6 @@ const schedule = [
   { time: "4:00–5:30 PM", activity: "Extended Care", subtitle: "Supervised activities for those needing later pick-up", color: "bg-violet/10 text-violet" },
 ];
 
-const locations = {
-  "West Island": [
-    { name: "DDO", slug: "dollard-des-ormeaux" },
-    { name: "Beaconsfield", slug: "beaconsfield" },
-    { name: "Baie d'Urfé", slug: "baie-durfe" },
-    { name: "Île-Bizard", slug: "ile-bizard" },
-    { name: "Ste-Geneviève", slug: "sainte-genevieve" },
-  ],
-  "Montreal": [
-    { name: "Downtown", slug: "montreal-downtown" },
-    { name: "NDG", slug: "notre-dame-de-grace" },
-    { name: "TMR", slug: "town-of-mount-royal" },
-    { name: "Verdun", slug: "verdun" },
-    { name: "Ville Saint-Laurent", slug: "ville-saint-laurent" },
-    { name: "Saint-Léonard", slug: "saint-leonard" },
-    { name: "RDP", slug: "riviere-des-prairies" },
-  ],
-  "Off Island": [
-    { name: "Laval", slug: "laval" },
-    { name: "Rosemère", slug: "rosemere" },
-    { name: "Brossard", slug: "brossard" },
-    { name: "Vaudreuil", slug: "vaudreuil" },
-  ],
-  "Ontario": [
-    { name: "Toronto", slug: "toronto" },
-    { name: "Ottawa", slug: "ottawa" },
-  ],
-};
 
 const faqItems = [
   { question: "What ages do you accept?", answer: "Ages 3–15+. Programs are split into Junior (3–4), Youth (5–11), Leadership (12–14), and C.I.T. (15+)." },
@@ -89,6 +66,7 @@ const faqItems = [
 ];
 
 export default function SummerCampPage() {
+  const { locale } = useLocale();
   return (
     <PageWrapper>
       <PageHero
@@ -285,33 +263,16 @@ export default function SummerCampPage() {
       </section>
 
       {/* Locations */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1320px] mx-auto px-6">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
             <SectionTag color="blue">17+ Locations</SectionTag>
             <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
               Find a Camp Near You
             </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[560px] mx-auto">Explore our 17+ locations across Quebec and Ontario. Use the map and filters to find the perfect camp for your family.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {Object.entries(locations).map(([region, locs], i) => (
-              <motion.div key={region} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="bg-gray-50 rounded-[var(--radius-lg)] p-6 border border-[var(--border)]">
-                <h3 className="text-[15px] font-extrabold text-navy mb-4 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-blue" />{region}
-                </h3>
-                <ul className="space-y-2">
-                  {locs.map((loc) => (
-                    <li key={loc.slug}>
-                      <Link href={`/summer-camp/locations/${loc.slug}`} className="text-[14px] text-text-body hover:text-blue transition-colors">
-                        {loc.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
+          <LocationExplorer locations={summerLocations} type="summer" locale={locale} />
         </div>
       </section>
 

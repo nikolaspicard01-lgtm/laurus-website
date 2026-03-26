@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CountdownBar from "@/components/CountdownBar";
@@ -16,8 +15,14 @@ const Testimonials = dynamic(() => import("@/components/Testimonials"), {
 const FAQ = dynamic(() => import("@/components/FAQ"), {
   loading: () => <div className="h-64" />,
 });
+const LocationExplorer = dynamic(() => import("@/components/LocationExplorer"), {
+  ssr: false,
+  loading: () => <div className="h-96 bg-gray-50 animate-pulse rounded-[var(--radius-lg)]" />,
+});
 import Icon, { type IconName } from "@/components/Icon";
 import { AnimatedCounter } from "@/components/Animate";
+import { useLocale } from "@/lib/LocaleContext";
+import { summerLocations as summerLocationsData } from "@/data/locations";
 
 const programs = [
   {
@@ -54,45 +59,6 @@ const programs = [
   },
 ];
 
-const summerLocations = {
-  "West Island": [
-    { name: "DDO", slug: "dollard-des-ormeaux" },
-    { name: "Beaconsfield", slug: "beaconsfield" },
-    { name: "Baie d'Urfé", slug: "baie-durfe" },
-    { name: "Île-Bizard", slug: "ile-bizard" },
-    { name: "Ste-Geneviève", slug: "sainte-genevieve" },
-  ],
-  Montreal: [
-    { name: "Downtown", slug: "montreal-downtown" },
-    { name: "NDG", slug: "notre-dame-de-grace" },
-    { name: "TMR", slug: "town-of-mount-royal" },
-    { name: "Verdun", slug: "verdun" },
-    { name: "Ville Saint-Laurent", slug: "ville-saint-laurent" },
-    { name: "Saint-Léonard", slug: "saint-leonard" },
-    { name: "RDP", slug: "riviere-des-prairies" },
-  ],
-  "Off Island": [
-    { name: "Laval", slug: "laval" },
-    { name: "Rosemère", slug: "rosemere" },
-    { name: "Brossard", slug: "brossard" },
-    { name: "Vaudreuil", slug: "vaudreuil" },
-  ],
-  Ontario: [
-    { name: "Toronto", slug: "toronto" },
-    { name: "Ottawa", slug: "ottawa" },
-  ],
-};
-
-const springLocations = [
-  { name: "DDO", slug: "dollard-des-ormeaux" },
-  { name: "Laval", slug: "laval" },
-  { name: "NDG", slug: "notre-dame-de-grace" },
-  { name: "Verdun", slug: "verdun" },
-  { name: "TMR", slug: "town-of-mount-royal" },
-  { name: "Westmount", slug: "westmount" },
-  { name: "Rosemère", slug: "rosemere" },
-  { name: "Toronto", slug: "toronto" },
-];
 
 const stats = [
   { value: "2,000+", label: "Kids Annually" },
@@ -154,6 +120,7 @@ const faqItems = [
 ];
 
 export default function HomePage() {
+  const { locale } = useLocale();
   return (
     <>
       <CountdownBar />
@@ -358,7 +325,7 @@ export default function HomePage() {
 
         {/* ========== SUMMER CAMP LOCATIONS ========== */}
         <section className="py-20 lg:py-28 bg-white" id="summer-locations">
-          <div className="max-w-[1320px] mx-auto px-6">
+          <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
             <div className="text-center mb-14">
               <SectionTag color="sunshine">Locations</SectionTag>
               <motion.h2
@@ -376,67 +343,19 @@ export default function HomePage() {
                 transition={{ delay: 0.1 }}
                 className="text-[16px] text-text-body max-w-[480px] mx-auto"
               >
-                17+ locations across Quebec and Ontario. Find one near you.
+                17+ locations across Quebec and Ontario. Use the map to find one near you.
               </motion.p>
             </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {Object.entries(summerLocations).map(([region, locations], i) => (
-                <motion.div
-                  key={region}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-gray-50 rounded-[var(--radius-lg)] p-4 sm:p-6 border border-[var(--border)]"
-                >
-                  <h3 className="text-[15px] font-extrabold text-navy mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-blue" />
-                    {region}
-                  </h3>
-                  <ul className="space-y-2">
-                    {locations.map((loc) => (
-                      <li key={loc.slug}>
-                        <Link
-                          href={`/summer-camp/locations/${loc.slug}`}
-                          className="text-[14px] text-text-body hover:text-blue transition-colors"
-                        >
-                          {loc.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
+            <LocationExplorer locations={summerLocationsData} type="summer" locale={locale} />
+            <div className="mt-8 text-center">
+              <Button href={`/${locale}/summer-camp`} variant="outline" size="md" pill>
+                View All Summer Locations →
+              </Button>
             </div>
-
-            {/* Spring Break Locations */}
-            <div className="mt-16 text-center">
-              <motion.h3
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-[20px] font-extrabold text-navy mb-5"
-              >
-                <Icon name="flower" size={20} className="inline -mt-0.5 text-coral" /> Spring Break Locations
-              </motion.h3>
-              <div className="flex flex-wrap justify-center gap-2">
-                {springLocations.map((loc) => (
-                  <Link
-                    key={loc.slug}
-                    href={`/spring-break/locations/${loc.slug}`}
-                  >
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      className="text-[13px] font-bold text-coral bg-coral/6 px-4 py-2 rounded-full border border-coral/15 hover:bg-coral/10 transition-colors cursor-pointer inline-block"
-                    >
-                      {loc.name}
-                    </motion.span>
-                  </Link>
-                ))}
-              </div>
+            <div className="mt-6 text-center">
+              <Button href={`/${locale}/spring-break`} variant="outline" size="sm" pill className="!border-coral/20 !text-coral hover:!bg-coral/5">
+                <Icon name="flower" size={16} className="inline -mt-0.5" /> Spring Break Camps →
+              </Button>
             </div>
           </div>
         </section>

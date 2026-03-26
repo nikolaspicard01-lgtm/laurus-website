@@ -1,27 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import PageWrapper from "@/components/PageWrapper";
 import PageHero from "@/components/PageHero";
 import SectionTag from "@/components/SectionTag";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import { useLocale } from "@/lib/LocaleContext";
+import { springLocations } from "@/data/locations";
 import dynamic from "next/dynamic";
 const FAQ = dynamic(() => import("@/components/FAQ"), {
   loading: () => <div className="h-64" />,
 });
+const LocationExplorer = dynamic(() => import("@/components/LocationExplorer"), {
+  ssr: false,
+  loading: () => <div className="h-96 bg-gray-50 animate-pulse rounded-[var(--radius-lg)]" />,
+});
 
-const locations = [
-  { name: "DDO", slug: "dollard-des-ormeaux", price: "$350/wk", region: "Quebec" },
-  { name: "Laval", slug: "laval", price: "$350/wk", region: "Quebec" },
-  { name: "NDG", slug: "notre-dame-de-grace", price: "$375/wk", region: "Quebec" },
-  { name: "Verdun", slug: "verdun", price: "$350/wk", region: "Quebec" },
-  { name: "TMR", slug: "town-of-mount-royal", price: "$375/wk", region: "Quebec" },
-  { name: "Westmount", slug: "westmount", price: "$375/wk", region: "Quebec" },
-  { name: "Rosemère", slug: "rosemere", price: "$350/wk", region: "Quebec" },
-  { name: "Toronto (Richmond Hill)", slug: "toronto", price: "$575/wk", region: "Ontario" },
-];
 
 const faqItems = [
   { question: "Can I register for single days?", answer: "Yes. Full week rates apply, but single days are available at $80/day." },
@@ -31,6 +26,7 @@ const faqItems = [
 ];
 
 export default function SpringBreakPage() {
+  const { locale } = useLocale();
   return (
     <PageWrapper>
       <PageHero
@@ -46,24 +42,15 @@ export default function SpringBreakPage() {
 
       {/* Locations & Pricing */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1320px] mx-auto px-6">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
             <SectionTag color="coral">8+ Locations</SectionTag>
             <motion.h2 initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-navy mt-5 mb-4">
               Locations & Pricing
             </motion.h2>
+            <p className="text-[16px] text-text-body max-w-[560px] mx-auto">Explore our Spring Break locations across Quebec and Ontario. Use the map and filters to find the perfect camp.</p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {locations.map((loc, i) => (
-              <Link key={loc.slug} href={`/spring-break/locations/${loc.slug}`}>
-                <Card accent={loc.region === "Ontario" ? "sunshine" : "coral"} delay={i * 0.08}>
-                  <h3 className="text-[16px] font-extrabold text-navy mb-1">{loc.name}</h3>
-                  <p className="text-[12px] font-bold text-text-muted mb-3">{loc.region}</p>
-                  <p className="text-[20px] font-black text-coral">{loc.price}</p>
-                </Card>
-              </Link>
-            ))}
-          </div>
+          <LocationExplorer locations={springLocations} type="spring" locale={locale} />
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             {[{ label: "Single Day Rate", value: "$80/day" }, { label: "Extended Hours", value: "+$8/hour" }, { label: "Lunch Program", value: "$10/day" }].map((item) => (
               <div key={item.label} className="bg-gray-50 rounded-full px-5 py-2.5 border border-[var(--border)]">

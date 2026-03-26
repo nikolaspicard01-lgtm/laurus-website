@@ -13,6 +13,8 @@ export interface Location {
   holidayNote?: string;
   extendedCare: string;
   lunchAvailable: boolean;
+  lat: number;
+  lng: number;
 }
 
 export const summerLocations: Location[] = [
@@ -27,6 +29,8 @@ export const summerLocations: Location[] = [
     holidayNote: "Open on June 24 (Saint-Jean-Baptiste) and July 1 (Canada Day) — no interruption to your child's camp week.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4942,
+    lng: -73.8125,
   },
   {
     slug: "beaconsfield", name: "Beaconsfield", region: "West Island",
@@ -35,6 +39,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Situated in the charming lakefront community of Beaconsfield, near Centennial Park and the Beaconsfield Library. Minutes from Highway 20.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4333,
+    lng: -73.8667,
   },
   {
     slug: "baie-durfe", name: "Baie d'Urfé", region: "West Island",
@@ -44,6 +50,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Nestled in the peaceful lakeside village of Baie d'Urfé along Lakeshore Road, near Fritz Park and the Morgan Arboretum nature reserve.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4100,
+    lng: -73.9167,
   },
   {
     slug: "ile-bizard", name: "Île-Bizard", region: "West Island",
@@ -52,6 +60,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Located on the island borough of Île-Bizard–Sainte-Geneviève, close to Parc-nature du Bois-de-l'Île-Bizard and the Rivière-des-Prairies waterfront.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.5000,
+    lng: -73.8500,
   },
   {
     slug: "sainte-genevieve", name: "Sainte-Geneviève", region: "West Island",
@@ -60,6 +70,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Situated in the historic village of Sainte-Geneviève, near Parc Stoney Point and the scenic Rivière-des-Prairies shoreline. Quick access from Autoroute 40.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4833,
+    lng: -73.8667,
   },
   // Montreal
   {
@@ -70,6 +82,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Steps from Atwater metro station and the Westmount border. Near Dawson College, the Atwater Market, and the Lachine Canal bike path.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4790,
+    lng: -73.5850,
   },
   {
     slug: "notre-dame-de-grace", name: "Notre-Dame-de-Grâce (NDG)", region: "Montreal",
@@ -81,6 +95,8 @@ export const summerLocations: Location[] = [
     holidayNote: "Closed on June 24 (Saint-Jean-Baptiste) and July 1 (Canada Day). Campers are relocated to Sacred Heart School downtown for those days.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4730,
+    lng: -73.6180,
   },
   {
     slug: "town-of-mount-royal", name: "Town of Mount Royal (TMR)", region: "Montreal",
@@ -90,6 +106,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Located in the prestigious Town of Mount Royal, near the TMR train station and Connaught Park. Easy access from Highway 15 and Autoroute Métropolitaine.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.5167,
+    lng: -73.6333,
   },
   {
     slug: "verdun", name: "Verdun", region: "Montreal",
@@ -98,6 +116,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "In the lively borough of Verdun, close to the Verdun waterfront promenade and Parc du Boisé-de-Verdun. Steps from De l'Église metro station.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4580,
+    lng: -73.5710,
   },
   {
     slug: "ville-saint-laurent", name: "Ville Saint-Laurent", region: "Montreal",
@@ -106,6 +126,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Centrally located in Ville Saint-Laurent, near Parc Marcel-Laurin and the Saint-Laurent borough library. Quick access from Autoroutes 15 and 40.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.5050,
+    lng: -73.6750,
   },
   {
     slug: "saint-leonard", name: "Saint-Léonard", region: "Montreal",
@@ -114,6 +136,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "In the heart of Saint-Léonard, near Parc Wilfrid-Bastien and the Roberto-Clemente aquatic complex. Accessible via Boulevard Lacordaire and Autoroute 40.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.5870,
+    lng: -73.5920,
   },
   {
     slug: "riviere-des-prairies", name: "Rivière-des-Prairies", region: "Montreal",
@@ -122,6 +146,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "Located in Rivière-des-Prairies, close to the scenic riverfront parks and Parc-nature de la Pointe-aux-Prairies. Near Boulevard Henri-Bourassa.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.6250,
+    lng: -73.5850,
   },
   // Off Island
   {
@@ -134,6 +160,8 @@ export const summerLocations: Location[] = [
     holidayNote: "Open on June 24 (Saint-Jean-Baptiste) and July 1 (Canada Day). Camp starts June 24 — one of the first locations to open.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.5580,
+    lng: -73.7500,
   },
   {
     slug: "rosemere", name: "Rosemère", region: "Off Island",
@@ -142,6 +170,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "In the charming town of Rosemère on the North Shore, near Parc Charbonneau and Rivière des Mille Îles. Accessible from Autoroute 15 North.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.6370,
+    lng: -73.8000,
   },
   {
     slug: "brossard", name: "Brossard", region: "Off Island",
@@ -153,6 +183,8 @@ export const summerLocations: Location[] = [
     holidayNote: "Open on June 24 (Saint-Jean-Baptiste) and July 1 (Canada Day) — no interruption to your child's camp week.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4580,
+    lng: -73.4580,
   },
   {
     slug: "vaudreuil", name: "Vaudreuil", region: "Off Island",
@@ -161,6 +193,8 @@ export const summerLocations: Location[] = [
     nearbyLandmarks: "In the growing community of Vaudreuil-Dorion, near Parc de la Maison-Valois and Lac des Deux Montagnes. Accessible from Highway 40 West.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.4000,
+    lng: -74.0300,
   },
   // Ontario
   {
@@ -173,6 +207,8 @@ export const summerLocations: Location[] = [
     holidayNote: "Camp starts June 29, aligning with the Ontario school calendar. No Quebec statutory holiday closures apply.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 43.7900,
+    lng: -79.5900,
   },
   {
     slug: "ottawa", name: "Ottawa", region: "Ontario",
@@ -184,6 +220,8 @@ export const summerLocations: Location[] = [
     holidayNote: "Camp starts July 6, running through August 21. Week 9 is held at St-Timothy's Presbyterian Church.",
     extendedCare: "Included",
     lunchAvailable: true,
+    lat: 45.3550,
+    lng: -75.6250,
   },
 ];
 
@@ -196,6 +234,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "Located on Boulevard Saint-Jean in the heart of DDO, close to Bois-de-la-Roche nature park and local shopping plazas.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.4942,
+    lng: -73.8125,
   },
   {
     slug: "laval", name: "Laval", region: "Quebec",
@@ -205,6 +245,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "On Rue Cardinal in Chomedey, Laval, near Centre de la Nature and Cosmodôme. Easy access from Autoroute 13.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.5580,
+    lng: -73.7500,
   },
   {
     slug: "notre-dame-de-grace", name: "NDG", region: "Quebec",
@@ -214,6 +256,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "In the heart of NDG on Rue de Terrebonne, surrounded by Monkland Village shops and cafés. Near NDG Park.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.4730,
+    lng: -73.6180,
   },
   {
     slug: "verdun", name: "Verdun", region: "Quebec",
@@ -222,6 +266,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "In the lively borough of Verdun, close to the Verdun waterfront promenade. Steps from De l'Église metro station.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.4580,
+    lng: -73.5710,
   },
   {
     slug: "town-of-mount-royal", name: "TMR", region: "Quebec",
@@ -230,6 +276,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "Located in the prestigious Town of Mount Royal, near the TMR train station and Connaught Park.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.5167,
+    lng: -73.6333,
   },
   {
     slug: "westmount", name: "Westmount", region: "Quebec",
@@ -238,6 +286,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "In the prestigious neighbourhood of Westmount, near Westmount Park, the Westmount Library, and Victoria Village shops.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.4833,
+    lng: -73.6000,
   },
   {
     slug: "rosemere", name: "Rosemère", region: "Quebec",
@@ -246,6 +296,8 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "In the charming town of Rosemère on the North Shore, near Parc Charbonneau and Rivière des Mille Îles.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 45.6370,
+    lng: -73.8000,
   },
   {
     slug: "toronto", name: "Toronto (Richmond Hill)", region: "Ontario",
@@ -255,5 +307,7 @@ export const springLocations: Location[] = [
     nearbyLandmarks: "On Bayview Avenue in Richmond Hill, near Lake Wilcox Park and the Richmond Green Sports Centre. Easy access from Highway 404.",
     extendedCare: "+$8/hour",
     lunchAvailable: true,
+    lat: 43.8600,
+    lng: -79.4400,
   },
 ];
