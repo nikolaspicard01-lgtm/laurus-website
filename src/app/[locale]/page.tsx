@@ -7,6 +7,7 @@ import CountdownBar from "@/components/CountdownBar";
 import SectionTag from "@/components/SectionTag";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
+import CompareSection from "@/components/CompareSection";
 import dynamic from "next/dynamic";
 
 const Testimonials = dynamic(() => import("@/components/Testimonials"), {
@@ -21,6 +22,7 @@ const LocationExplorer = dynamic(() => import("@/components/LocationExplorer"), 
 });
 import Icon, { type IconName } from "@/components/Icon";
 import { AnimatedCounter } from "@/components/Animate";
+import ParentGuideGate from "@/components/ParentGuideGate";
 import { useLocale } from "@/lib/LocaleContext";
 import { summerLocations as summerLocationsData } from "@/data/locations";
 
@@ -406,6 +408,34 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ========== COMPARE SECTION ========== */}
+        <CompareSection />
+
+        {/* ========== QUIZ TEASER ========== */}
+        <section className="py-16 lg:py-20 bg-cream">
+          <div className="max-w-[800px] mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-[var(--radius-lg)] border border-[var(--border)] shadow-[var(--shadow-md)] p-8 sm:p-10"
+            >
+              <div className="w-14 h-14 rounded-2xl bg-blue/8 flex items-center justify-center mx-auto mb-4">
+                <Icon name="help-circle" size={28} className="text-blue" />
+              </div>
+              <h2 className="text-[clamp(1.4rem,3vw,1.8rem)] font-black text-navy mb-3">
+                Not Sure Which Program?
+              </h2>
+              <p className="text-[15px] text-text-body max-w-[440px] mx-auto mb-6">
+                Take our 60-second quiz and get a personalized program recommendation for your child.
+              </p>
+              <Button href={`/${locale}/quiz`} variant="blue" size="lg" pill>
+                <Icon name="sparkles" size={18} className="inline -mt-0.5" /> Find Your Perfect Program
+              </Button>
+            </motion.div>
+          </div>
+        </section>
+
         {/* ========== PARTNER TRUST BAR ========== */}
         <section className="py-12 bg-white border-y border-[var(--border)]">
           <div className="max-w-[1320px] mx-auto px-6 text-center">
@@ -445,40 +475,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ========== NEWSLETTER ========== */}
-        <section className="py-20 lg:py-24 gradient-navy" id="newsletter">
-          <div className="max-w-[700px] mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-white mb-4">
-                Join the Laurus Community
-              </h2>
-              <p className="text-[15px] text-white/60 mb-8">
-                Get the latest updates on programs, early bird discounts, and
-                parenting tips delivered to your inbox.
-              </p>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex flex-col sm:flex-row gap-3 max-w-[480px] mx-auto"
-              >
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-5 py-3.5 rounded-full bg-white/10 border border-white/15 text-white placeholder:text-white/40 text-[14px] focus:outline-none focus:border-blue focus:ring-2 focus:ring-blue/20 transition-all"
-                />
-                <button
-                  type="submit"
-                  className="gradient-coral text-white font-bold text-[14px] px-7 py-3.5 rounded-full shadow-[var(--shadow-coral)] hover:-translate-y-0.5 hover:shadow-lg transition-all"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        </section>
+        {/* ========== PARENT GUIDE GATE (replaces Newsletter) ========== */}
+        <ParentGuideGate />
 
         {/* ========== FAQ ========== */}
         <section className="py-20 lg:py-28 bg-white">

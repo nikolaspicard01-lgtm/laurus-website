@@ -5,6 +5,8 @@ import { isValidLocale, locales, type Locale } from "@/lib/i18n";
 import { LocaleProvider } from "@/lib/LocaleContext";
 import { getPageMetadata } from "@/lib/metadata";
 import { LocalBusinessSchema } from "@/components/JsonLd";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -55,6 +57,8 @@ export default async function LocaleLayout({
       <body className="min-h-full flex flex-col">
         <LocaleProvider locale={locale as Locale}>
           {children}
+          <ExitIntentPopup />
+          <StickyMobileCTA />
         </LocaleProvider>
       </body>
     </html>
