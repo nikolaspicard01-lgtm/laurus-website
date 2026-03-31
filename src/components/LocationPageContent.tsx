@@ -146,7 +146,7 @@ export default function LocationPageContent({ location, type }: Props) {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
             className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-            <Button href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs" external variant="coral" size="lg" pill>
+            <Button href={location.registrationUrl} external variant="coral" size="lg" pill>
               Register Now — {location.earlyBirdPrice}
             </Button>
             <Button href={isSummer ? "/summer-camp" : "/spring-break"} variant="white" size="lg" pill>
@@ -263,7 +263,7 @@ export default function LocationPageContent({ location, type }: Props) {
                 </div>
 
                 <Button
-                  href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs"
+                  href={location.registrationUrl}
                   external variant="coral" size="lg" pill
                   className="w-full mt-6 justify-center"
                 >
@@ -642,7 +642,7 @@ export default function LocationPageContent({ location, type }: Props) {
           </h2>
           <p className="text-[15px] text-white/50 mb-2">Starting at <span className="text-white font-bold">{location.earlyBirdPrice}</span> with early bird pricing</p>
           <p className="text-[13px] text-coral font-bold mb-6">{spotsLeft} spots remaining</p>
-          <Button href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs" external variant="coral" size="lg" pill>
+          <Button href={location.registrationUrl} external variant="coral" size="lg" pill>
             Secure Your Spot →
           </Button>
         </div>
