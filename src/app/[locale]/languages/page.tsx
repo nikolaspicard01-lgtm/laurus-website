@@ -31,9 +31,9 @@ export default function LanguagesPage() {
   ];
 
   const locations = [
-    { name: "DDO Campus", venue: "Emmanuel Christian School", dates: "Jun 22 – Aug 14", price: "$375/wk" },
-    { name: "Montreal Downtown", venue: "Sacred Heart School", dates: "Jun 22 – Aug 14", price: "$375/wk" },
-    { name: "Laval Campus", venue: "John F. Kennedy Elementary", dates: "Jun 29 – Aug 14", price: "$375/wk" },
+    { name: "Montreal Downtown", venue: "The Sacred Heart School", dates: "Jun 22 – Aug 14", price: "$375/wk", weeks: 8, registrationUrl: "https://app.amilia.com/store/en/laurus-summer-camp/api/Program/Detail?programId=kX62gOy" },
+    { name: "Laval", venue: "John F. Kennedy Elementary", dates: "Jun 29 – Aug 14", price: "$375/wk", weeks: 7, registrationUrl: "https://app.amilia.com/store/en/laurus-summer-camp/api/Program/Detail?programId=k40e89k" },
+    { name: "DDO", venue: "Emmanuel Christian School", dates: "Jun 22 – Aug 14", price: "$375/wk", weeks: 8, registrationUrl: "https://app.amilia.com/store/en/laurus-summer-camp/api/Program/Detail?programId=ydzGrDk" },
   ];
 
   return (
@@ -44,7 +44,7 @@ export default function LanguagesPage() {
         title={<>{t.heroTitle} <span className="hl-blue">{t.heroHighlight}</span> {t.heroTitle2}</>}
         subtitle={t.heroSub}
         ctaText={dict.common.registerNow}
-        ctaHref="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs"
+        ctaHref="https://app.amilia.com/store/en/laurus-summer-camp/api/Program/Detail?programId=kX62gOy"
         ctaExternal
         gradient="blue"
       />
@@ -164,8 +164,13 @@ export default function LanguagesPage() {
               <Card key={loc.name} accent="blue" delay={i * 0.1}>
                 <h3 className="text-[17px] font-extrabold text-navy mb-1">{loc.name}</h3>
                 <p className="text-[13px] text-text-muted mb-1">{loc.venue}</p>
-                <p className="text-[13px] text-text-muted mb-3">{loc.dates}</p>
-                <p className="text-[22px] font-black text-blue">{loc.price}</p>
+                <p className="text-[13px] text-text-muted mb-1">{loc.dates} ({loc.weeks} weeks)</p>
+                <p className="text-[13px] text-text-muted mb-3">English & French Immersion</p>
+                <p className="text-[22px] font-black text-blue mb-3">{loc.price}</p>
+                <a href={loc.registrationUrl} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-[13px] font-bold text-blue hover:underline">
+                  Register for {loc.name} <span>&rarr;</span>
+                </a>
               </Card>
             ))}
           </div>
@@ -203,7 +208,7 @@ export default function LanguagesPage() {
         <div className="max-w-[700px] mx-auto px-6">
           <h2 className="text-[clamp(1.8rem,3.5vw,2.6rem)] font-black text-white mb-4">{t.ctaTitle}</h2>
           <p className="text-[16px] text-white/60 mb-8">{t.ctaSub}</p>
-          <Button href="https://app.amilia.com/store/en/laurus-summer-camp/shop/programs" external variant="coral" size="lg" pill>{dict.common.registerNow}</Button>
+          <Button href="https://app.amilia.com/store/en/laurus-summer-camp/api/Program/Detail?programId=kX62gOy" external variant="coral" size="lg" pill>{dict.common.registerNow}</Button>
         </div>
       </section>
     </PageWrapper>
