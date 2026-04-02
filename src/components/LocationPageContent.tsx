@@ -88,8 +88,8 @@ export default function LocationPageContent({ location, type }: Props) {
 
   const basePrice = parseFloat(location.earlyBirdPrice.replace(/[$\/wk,]/g, ""));
   const weekDiscount = numWeeks >= 8 ? 0.10 : numWeeks >= 5 ? 0.05 : 0;
-  const siblingDiscount = numKids >= 2 ? 0.15 : 0;
-  const totalDiscount = Math.min(weekDiscount + siblingDiscount, 0.25);
+  const siblingDiscount = numKids >= 2 ? 0.10 : 0;
+  const totalDiscount = Math.min(weekDiscount + siblingDiscount, 0.20);
   const pricePerWeek = basePrice * (1 - totalDiscount);
   const totalPrice = pricePerWeek * numWeeks * numKids;
   const totalSavings = (basePrice * numWeeks * numKids) - totalPrice;
@@ -162,8 +162,35 @@ export default function LocationPageContent({ location, type }: Props) {
           <div className="text-center mb-10">
             <SectionTag color="sunshine">Pricing & Discounts</SectionTag>
             <h2 className="text-[clamp(1.6rem,3vw,2.2rem)] font-black text-navy mt-5 mb-2">Calculate Your Price</h2>
-            <p className="text-[15px] text-text-muted">Stack discounts for up to 25% off. Camp fees are tax deductible (RL-24).</p>
+            <p className="text-[15px] text-text-muted">Stack discounts for up to 20% off + 10% sibling discount. Camp fees are tax deductible (RL-24).</p>
           </div>
+
+          {/* Pricing Tiers */}
+          {location.pricing && (
+            <div className="mb-8 grid grid-cols-4 gap-2 sm:gap-3">
+              {[
+                { month: "Jan", price: location.pricing.jan, past: true },
+                { month: "Feb", price: location.pricing.feb, past: true },
+                { month: "Mar", price: location.pricing.mar, past: true },
+                { month: "Apr", price: location.pricing.apr, past: false },
+              ].map((tier) => (
+                <div key={tier.month} className={`rounded-[var(--radius-md)] p-3 sm:p-4 text-center border ${
+                  !tier.past
+                    ? "bg-blue/5 border-blue/20 ring-2 ring-blue/30"
+                    : "bg-gray-50 border-[var(--border)] opacity-50"
+                }`}>
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-text-muted mb-1">{tier.month}</div>
+                  <div className={`text-[18px] sm:text-[22px] font-black ${!tier.past ? "text-blue" : "text-text-muted line-through"}`}>
+                    {tier.price}
+                  </div>
+                  <div className="text-[10px] text-text-muted">/week</div>
+                  {!tier.past && (
+                    <div className="text-[9px] font-bold text-blue bg-blue/10 rounded-full px-2 py-0.5 mt-1.5 inline-block">CURRENT</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
 
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Left: Calculator */}
@@ -222,7 +249,7 @@ export default function LocationPageContent({ location, type }: Props) {
                 <div className={`flex items-center justify-between p-3 rounded-[var(--radius-xs)] border ${siblingDiscount > 0 ? "bg-mint/8 border-mint/20" : "bg-gray-50 border-[var(--border)]"}`}>
                   <span className="text-[13px] font-semibold text-navy">Sibling Discount ({numKids} kid{numKids > 1 ? "s" : ""})</span>
                   <span className={`text-[13px] font-bold ${siblingDiscount > 0 ? "text-mint-dark" : "text-text-muted"}`}>
-                    {siblingDiscount > 0 ? "15% off" : "Add 2+ kids"}
+                    {siblingDiscount > 0 ? "10% off" : "Add 2+ kids"}
                   </span>
                 </div>
                 <div className="flex items-center justify-between p-3 rounded-[var(--radius-xs)] bg-blue/8 border border-blue/20">
